@@ -13,7 +13,7 @@
 
 Ending the AIDS epidemic is more than a historic obligation to the 39 million people who have died of the disease. It also represents a momentous opportunity to lay the foundation for a healthier, more just and equitable world for future generations. Ending the AIDS epidemic will inspire broader global health and development efforts, demonstrating what can be achieved through global solidarity, evidence-based action and multisectoral partnerships.
 
-<a href="https://ibb.co/mt8fYwH"><img src="https://i.ibb.co/ZKmqwPh/HIV-cascade.png" alt="HIV-cascade" border="0"></a><br /><br />
+![](https://lh3.googleusercontent.com/gAzCzNS4lOmF8Ws75ifbyOBd_00PwpUzvXBk6bYQMUR0MwbyEYnJqYcSkJ9XLLhr-TiAtgMQ3_w6w2T2XkUp=w1853-h949-rw)
 
 Although many strategies will be needed to close the book on the AIDS epidemic, one thing is certain. It will be impossible to end the epidemic without bringing HIV treatment to all who need it.
 
