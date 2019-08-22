@@ -6,6 +6,13 @@ before_script:
   - npm install -g bower
   - bower install
 
+branches:
+  only:
+    - master
+    - develop
+    - /^greenkeeper/.*$/
+
+
 scripts : 
   - vows --spec
 
