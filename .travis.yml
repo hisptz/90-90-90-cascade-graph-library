@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - 10
+
+branches:
+  only:
+    - master
+    - develop
+    - /^greenkeeper/.*$/
+
+
+scripts : 
+  - npm run start
+
+notifications:
+  email:
+    recipients:
+    - walterplatnumz@gmail.com
+    on_success: change
+    on_failure: always
