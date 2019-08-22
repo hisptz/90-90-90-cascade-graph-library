@@ -23,9 +23,9 @@ In December 2013, the UNAIDS Programme Coordinating Board called on UNAIDS to su
 
 Powerful momentum is now building towards a new narrative on HIV treatment and a new, final, ambitious, but achievable target:
 
-By 2020, 90% of all people living with HIV will know their HIV status.
-By 2020, 90% of all people with diagnosed HIV infection will receive sustained antiretroviral therapy.
-By 2020, 90% of all people receiving antiretroviral therapy will have viral suppression. 
+- By 2020, 90% of all people living with HIV will know their HIV status.
+- By 2020, 90% of all people with diagnosed HIV infection will receive sustained antiretroviral therapy.
+- By 2020, 90% of all people receiving antiretroviral therapy will have viral suppression. 
 
 ## Library Info
 [Highcharts 90-90-90 Cascade Graph](https://www.npmjs.com/package/@iapps90-90-90-cascade) is [Javascript](https://www.npmjs.com/package/@iapps90-90-90-cascade) library built on top of [Highcharts](https://www.highcharts.com) to support the HIV/AIDS cascade implementation in treatment target(already set as mentioned above) to help end the AIDS epidemic.
