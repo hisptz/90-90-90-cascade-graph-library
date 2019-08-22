@@ -1,0 +1,28 @@
+{
+  "name": "90-90-90-cascade-graph-library",
+  "version": "1.0.0",
+  "description": "90-90-90 HIV Prevention, Engagement and Care Cascade Graph(i.e Treatment target graph to help end the AIDS epidemic)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hisptz/90-90-90-cascade-graph-library.git"
+  },
+  "keywords": [
+    "90-90-90-cascade-graph",
+    "dhis2",
+    "nacp",
+    "codebible",
+    "hisptz",
+    "udsm",
+    "cascade"
+  ],
+  "author": "Walter V. Faustine <waltervfaustine@gmail.com>",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/hisptz/90-90-90-cascade-graph-library/issues"
+  },
+  "homepage": "https://github.com/hisptz/90-90-90-cascade-graph-library#readme"
+}
