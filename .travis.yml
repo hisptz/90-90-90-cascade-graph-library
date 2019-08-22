@@ -10,7 +10,7 @@ branches:
 
 
 scripts : 
-  - vows --spec
+  - npm run start
 
 notifications:
   email:
