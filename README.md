@@ -2,14 +2,18 @@
 ### 90-90-90 HIV Prevention, Engagement and Care Cascade Graph(i.e Treatment target graph to help end the AIDS epidemic)
 
 <!-- [![Build Status](https://travis-ci.org/hisptz/90-90-90-cascade-graph-library.svg?branch=master)](https://travis-ci.org/hisptz/90-90-90-cascade-graph-library) -->
-[![Greenkeeper badge](https://badges.greenkeeper.io/hisptz/90-90-90-cascade-graph-library.svg)](https://greenkeeper.io/)
+[![CircleCI](https://circleci.com/gh/hisptz/90-90-90-cascade-graph-library.svg?style=svg)](https://circleci.com/gh/hisptz/90-90-90-cascade-graph-library)
 [![Build Status](https://travis-ci.org/hisptz/90-90-90-cascade-graph-library.svg?branch=develop)](https://travis-ci.org/hisptz/90-90-90-cascade-graph-library)
+[![Greenkeeper badge](https://badges.greenkeeper.io/hisptz/90-90-90-cascade-graph-library.svg)](https://greenkeeper.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4ee0db1dfe5a718d2310/maintainability)](https://codeclimate.com/github/hisptz/90-90-90-cascade-graph-library/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4ee0db1dfe5a718d2310/test_coverage)](https://codeclimate.com/github/hisptz/90-90-90-cascade-graph-library/test_coverage)
+
 
 ## Introduction
 
 Ending the AIDS epidemic is more than a historic obligation to the 39 million people who have died of the disease. It also represents a momentous opportunity to lay the foundation for a healthier, more just and equitable world for future generations. Ending the AIDS epidemic will inspire broader global health and development efforts, demonstrating what can be achieved through global solidarity, evidence-based action and multisectoral partnerships.
+
+<img src="../../raw/master/assets/HIV_cascade.png" width="" height="" />
 
 Although many strategies will be needed to close the book on the AIDS epidemic, one thing is certain. It will be impossible to end the epidemic without bringing HIV treatment to all who need it.
 
