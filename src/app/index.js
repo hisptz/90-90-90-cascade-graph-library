@@ -23,11 +23,11 @@ const GenerateCascadeGraph = function (
  * @param {string} ctype
  */
 const getChartTypeConfiguration = function (ctype) {
-    return ctype == undefined
-        ? {
+    return ctype == undefined ?
+        {
             type: ctype,
-        }
-        : {
+        } :
+        {
             type: 'column',
         };
 };
@@ -43,11 +43,11 @@ const getChartTitleConfiguration = function (
     chartObject,
     favoriteExtension
 ) {
-    return !useCustomSeriesTitle
-        ? {
+    return !useCustomSeriesTitle ?
+        {
             text: favoriteExtension.name,
-        }
-        : {
+        } :
+        {
             text: chartObject.title.text,
         };
 };
@@ -92,9 +92,9 @@ const getXAxisChartConfigurations = function (
     chartObject,
     favoriteExtensions
 ) {
-    return useCustomXAxisTitle
-        ? getCustomXAxisLabels(chartObject, favoriteExtensions)
-        : getDefaultXAxisLabels(chartObject);
+    return useCustomXAxisTitle ?
+        getCustomXAxisLabels(chartObject, favoriteExtensions) :
+        getDefaultXAxisLabels(chartObject);
 };
 
 const getYAxisChartConfigurations = function () {
@@ -115,5 +115,24 @@ const getYAxisChartConfigurations = function () {
         },
     };
 };
+
+const getPlotOptions = function () {
+    return {
+        series: {
+            dataLabels: {
+                enabled: true,
+                inside: true
+            },
+            stacking: 'normal',
+            grouping: false,
+            shadow: false,
+            borderWidth: 0,
+            enableMouseTracking: false,
+            allowPointSelect: true,
+            verticalAlign: 'top',
+            align: 'center',
+        }
+    },
+}
 
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
