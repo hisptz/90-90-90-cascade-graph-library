@@ -23,11 +23,9 @@ const GenerateCascadeGraph = function (
  * @param {string} ctype
  */
 const getChartTypeConfiguration = function (ctype) {
-    return ctype == undefined
-        ? {
-            type: ctype,
-        }
-        : {
+    return ctype == undefined ? {
+        type: ctype,
+    } : {
             type: 'column',
         };
 };
@@ -43,11 +41,9 @@ const getChartTitleConfiguration = function (
     chartObject,
     favoriteExtension
 ) {
-    return !useCustomSeriesTitle
-        ? {
-            text: favoriteExtension.name,
-        }
-        : {
+    return !useCustomSeriesTitle ? {
+        text: favoriteExtension.name,
+    } : {
             text: chartObject.title.text,
         };
 };
@@ -92,9 +88,9 @@ const getXAxisChartConfigurations = function (
     chartObject,
     favoriteExtensions
 ) {
-    return useCustomXAxisTitle
-        ? getCustomXAxisLabels(chartObject, favoriteExtensions)
-        : getDefaultXAxisLabels(chartObject);
+    return useCustomXAxisTitle ?
+        getCustomXAxisLabels(chartObject, favoriteExtensions) :
+        getDefaultXAxisLabels(chartObject);
 };
 
 const getYAxisChartConfigurations = function () {
@@ -115,5 +111,40 @@ const getYAxisChartConfigurations = function () {
         },
     };
 };
+
+
+/**
+ * 
+ * @param {array} indicatorArray 
+ */
+const getAverageIndicatorValue = function (indicatorArray) {
+    return indicatorArray ? findAverage(indicatorArray) : 0;
+}
+
+
+/**
+ * 
+ * @param {array} indicatorArray 
+ */
+const getTotalIndicatorValue = function (indicatorArray) {
+    return indicatorArray ? findSummation(indicatorArray) : 0;
+}
+
+
+/**
+ * 
+ * @param {array} indicatorArray 
+ */
+const findSummation = function (indicatorArray) {
+    return indicatorArray ? indicatorArray.reduce((a, b) => a + b, 0) : 0;
+}
+
+/**
+ * 
+ * @param {array} indicatorArray 
+ */
+const findAverage = function (indicatorArray) {
+    return indicatorArray ? findSummation(indicatorArray) / indicatorArray.length : 0;
+}
 
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
