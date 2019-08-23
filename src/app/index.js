@@ -1,26 +1,31 @@
 /**
- * 
- * @param {string} config 
- * @param {string} context 
- * @param {string} ctype 
+ *
+ * @param {boolean} useCustomSeriesLabel
+ * @param {string} config
+ * @param {string} context
+ * @param {string} ctype
+ * @param {object} chartObject
+ * @param {object} favoriteExtension
  */
-const _90_90_90_CascadeGraph = function (config, context, ctype) { 
+const GenerateCascadeGraph = function (
+    useCustomSeriesLabel,
+    config,
+    context,
+    ctype,
+    chartObject,
+    favoriteExtension
+) {
     return 'generated_chart_object';
 };
 
 /**
- * @typedef {*} string
- */
-
-/**
  * 
- * @param {string} ctype 
+ * @param {string || undefined} ctype 
  */
 const chartConfig = function (ctype) {
-    return {
-        type: ctype,
-    }
-}
+    return ctype == undefined ? { type: ctype } : { type: 'column' };
+};
 
-exports._90_90_90_CascadeGraph = _90_90_90_CascadeGraph;
+const chartTitle = function () { };
 
+exports.GenerateCascadeGraph = GenerateCascadeGraph;
