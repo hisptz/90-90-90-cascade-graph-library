@@ -23,11 +23,13 @@ const GenerateCascadeGraph = function (
  * @param {string} ctype
  */
 const getChartTypeConfiguration = function (ctype) {
-    return ctype == undefined ? {
-        type: ctype,
-    } : {
-        type: 'column',
-    };
+    return ctype == undefined
+        ? {
+            type: ctype,
+        }
+        : {
+            type: 'column',
+        };
 };
 
 /**
@@ -41,11 +43,13 @@ const getChartTitleConfiguration = function (
     chartObject,
     favoriteExtension
 ) {
-    return !useCustomSeriesTitle ? {
-        text: favoriteExtension.name,
-    } : {
-        text: chartObject.title.text,
-    };
+    return !useCustomSeriesTitle
+        ? {
+            text: favoriteExtension.name,
+        }
+        : {
+            text: chartObject.title.text,
+        };
 };
 
 /**
@@ -77,7 +81,6 @@ const getDefaultXAxisLabels = function (chartObject) {
     return chartObject ? _.map(chartObject.series, item => item.name) : [];
 };
 
-
 /**
  * 
  * @param {boolean} useCustomXAxisTitle 
@@ -89,9 +92,28 @@ const getXAxisChartConfigurations = function (
     chartObject,
     favoriteExtensions
 ) {
-    return useCustomXAxisTitle ?
-        getCustomXAxisLabels(chartObject, favoriteExtensions) :
-        getDefaultXAxisLabels(chartObject);
+    return useCustomXAxisTitle
+        ? getCustomXAxisLabels(chartObject, favoriteExtensions)
+        : getDefaultXAxisLabels(chartObject);
+};
+
+const getYAxisChartConfigurations = function () {
+    return {
+        min: 0,
+        title: {
+            text: '',
+        },
+        stackLabels: {
+            style: {
+                color: 'black',
+            },
+            enabled: true,
+            verticalAlign: 'top',
+            formatter: function () {
+                return this.total;
+            },
+        },
+    };
 };
 
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
