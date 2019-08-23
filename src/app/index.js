@@ -22,7 +22,7 @@ const GenerateCascadeGraph = function (
  * 
  * @param {string || undefined} ctype 
  */
-const chartConfig = function (ctype) {
+const getChartTypeConfiguration = function (ctype) {
     return ctype == undefined ? { type: ctype } : { type: 'column' };
 };
 
