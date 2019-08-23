@@ -1,6 +1,6 @@
 /**
  *
- * @param {boolean} useCustomSeriesLabel
+ * @param {boolean} useCustomSeriesTitle
  * @param {string} config
  * @param {string} context
  * @param {string} ctype
@@ -8,7 +8,7 @@
  * @param {object} favoriteExtension
  */
 const GenerateCascadeGraph = function (
-    useCustomSeriesLabel,
+    useCustomSeriesTitle,
     config,
     context,
     ctype,
@@ -20,12 +20,25 @@ const GenerateCascadeGraph = function (
 
 /**
  * 
- * @param {string || undefined} ctype 
+ * @param {string} ctype 
  */
 const getChartTypeConfiguration = function (ctype) {
     return ctype == undefined ? { type: ctype } : { type: 'column' };
 };
 
-const chartTitle = function () { };
-
+/**
+ * 
+ * @param {boolean} useCustomSeriesTitle 
+ * @param {object} chartObject 
+ * @param {object} favoriteExtension 
+ */
+const getChartTitleConfiguration = function (
+    useCustomSeriesTitle,
+    chartObject,
+    favoriteExtension
+) {
+    return !useCustomSeriesTitle
+        ? { text: favoriteExtension.name }
+        : { text: chartObject.title.text };
+};
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
