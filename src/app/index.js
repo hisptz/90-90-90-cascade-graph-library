@@ -19,26 +19,79 @@ const GenerateCascadeGraph = function (
 };
 
 /**
- * 
- * @param {string} ctype 
+ *
+ * @param {string} ctype
  */
 const getChartTypeConfiguration = function (ctype) {
-    return ctype == undefined ? { type: ctype } : { type: 'column' };
+    return ctype == undefined ? {
+        type: ctype,
+    } : {
+        type: 'column',
+    };
 };
 
 /**
- * 
- * @param {boolean} useCustomSeriesTitle 
- * @param {object} chartObject 
- * @param {object} favoriteExtension 
+ *
+ * @param {boolean} useCustomSeriesTitle
+ * @param {object} chartObject
+ * @param {object} favoriteExtension
  */
 const getChartTitleConfiguration = function (
     useCustomSeriesTitle,
     chartObject,
     favoriteExtension
 ) {
-    return !useCustomSeriesTitle
-        ? { text: favoriteExtension.name }
-        : { text: chartObject.title.text };
+    return !useCustomSeriesTitle ? {
+        text: favoriteExtension.name,
+    } : {
+        text: chartObject.title.text,
+    };
 };
+
+/**
+ * 
+ * @param {object} chartObject 
+ * @param {object} favoriteExtensions 
+ */
+const getCustomXAxisLabels = function (chartObject, favoriteExtensions) {
+    const xAxisLabels = [];
+    if (chartObject) {
+        chartObject.series.forEach(item => {
+            if (item) {
+                favoriteExtensions.extensions.forEach(ext => {
+                    if (ext.id == item.id) {
+                        xAxisLabels.push(ext.name);
+                    }
+                });
+            }
+        });
+        return xAxisLabels;
+    }
+};
+
+/**
+ * 
+ * @param {object} chartObject 
+ */
+const getDefaultXAxisLabels = function (chartObject) {
+    return chartObject ? _.map(chartObject.series, item => item.name) : [];
+};
+
+
+/**
+ * 
+ * @param {boolean} useCustomXAxisTitle 
+ * @param {object} chartObject 
+ * @param {object} favoriteExtensions 
+ */
+const getXAxisChartConfigurations = function (
+    useCustomXAxisTitle,
+    chartObject,
+    favoriteExtensions
+) {
+    return useCustomXAxisTitle ?
+        getCustomXAxisLabels(chartObject, favoriteExtensions) :
+        getDefaultXAxisLabels(chartObject);
+};
+
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
