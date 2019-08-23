@@ -23,11 +23,9 @@ const GenerateCascadeGraph = function (
  * @param {string} ctype
  */
 const getChartTypeConfiguration = function (ctype) {
-    return ctype == undefined ?
-        {
-            type: ctype,
-        } :
-        {
+    return ctype == undefined ? {
+        type: ctype,
+    } : {
             type: 'column',
         };
 };
@@ -43,11 +41,9 @@ const getChartTitleConfiguration = function (
     chartObject,
     favoriteExtension
 ) {
-    return !useCustomSeriesTitle ?
-        {
-            text: favoriteExtension.name,
-        } :
-        {
+    return !useCustomSeriesTitle ? {
+        text: favoriteExtension.name,
+    } : {
             text: chartObject.title.text,
         };
 };
@@ -116,23 +112,39 @@ const getYAxisChartConfigurations = function () {
     };
 };
 
-const getPlotOptions = function () {
-    return {
-        series: {
-            dataLabels: {
-                enabled: true,
-                inside: true
-            },
-            stacking: 'normal',
-            grouping: false,
-            shadow: false,
-            borderWidth: 0,
-            enableMouseTracking: false,
-            allowPointSelect: true,
-            verticalAlign: 'top',
-            align: 'center',
-        }
-    },
+
+/**
+ * 
+ * @param {array} indicatorArray 
+ */
+const getAverageIndicatorValue = function (indicatorArray) {
+    return indicatorArray ? findAverage(indicatorArray) : 0;
+}
+
+
+/**
+ * 
+ * @param {array} indicatorArray 
+ */
+const getTotalIndicatorValue = function (indicatorArray) {
+    return indicatorArray ? findSummation(indicatorArray) : 0;
+}
+
+
+/**
+ * 
+ * @param {array} indicatorArray 
+ */
+const findSummation = function (indicatorArray) {
+    return indicatorArray ? indicatorArray.reduce((a, b) => a + b, 0) : 0;
+}
+
+/**
+ * 
+ * @param {array} indicatorArray 
+ */
+const findAverage = function (indicatorArray) {
+    return indicatorArray ? findSummation(indicatorArray) / indicatorArray.length : 0;
 }
 
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
