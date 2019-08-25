@@ -68,7 +68,6 @@ const getCustomXAxisLabels = function (chartObject, favoriteExtensions) {
     }
 };
 
-
 /**
  * 
  * @param {object} chartObject 
@@ -76,7 +75,6 @@ const getCustomXAxisLabels = function (chartObject, favoriteExtensions) {
 const getDefaultXAxisLabels = function (chartObject) {
     return chartOBJ ? _.map(chartOBJ.series, item => item.name) : [];
 };
-
 
 /**
  * 
@@ -94,6 +92,7 @@ const getXAxisChartConfigurations = function (
         : getDefaultXAxisLabels(chartObject);
 };
 
+
 const getYAxisChartConfigurations = function () {
     return {
         min: 0,
@@ -106,9 +105,6 @@ const getYAxisChartConfigurations = function () {
             },
             enabled: true,
             verticalAlign: 'top',
-            formatter: function () {
-                return this.total;
-            },
         },
     };
 };
