@@ -92,7 +92,6 @@ const getXAxisChartConfigurations = function (
         : getDefaultXAxisLabels(chartObject);
 };
 
-
 const getYAxisChartConfigurations = function () {
     return {
         min: 0,
@@ -109,13 +108,12 @@ const getYAxisChartConfigurations = function () {
     };
 };
 
-
 const getPlotOptionsConfigurations = function () {
     return {
         series: {
             dataLabels: {
                 enabled: true,
-                inside: true
+                inside: true,
             },
             stacking: 'normal',
             grouping: false,
@@ -125,9 +123,36 @@ const getPlotOptionsConfigurations = function () {
             allowPointSelect: true,
             verticalAlign: 'top',
             align: 'center',
-        }
-    }
-}
+        },
+    };
+};
+
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getTargetSeriesData = function (initialTarget, chartObject) {
+    return {
+        name: 'Achieved',
+        stack: 2,
+        zIndex: 2,
+        pointPadding: 0,
+        dataLabels: [
+            {
+                align: 'center',
+                format: '{point.percent}%',
+                verticalAlign: 'top',
+                align: 'center',
+                style: {
+                    color: 'black',
+                },
+            },
+        ],
+        data: getTargetedSeriesData(initialTarget, chartObject),
+    };
+};
 
 /**
  * 
