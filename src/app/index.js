@@ -68,7 +68,6 @@ const getCustomXAxisLabels = function (chartObject, favoriteExtensions) {
     }
 };
 
-
 /**
  * 
  * @param {object} chartObject 
@@ -77,6 +76,21 @@ const getDefaultXAxisLabels = function (chartObject) {
     return chartOBJ ? _.map(chartOBJ.series, item => item.name) : [];
 };
 
+/**
+ * 
+ * @param {boolean} useCustomXAxisTitle 
+ * @param {object} chartObject 
+ * @param {object} favoriteExtensions 
+ */
+const getXAxisChartConfigurations = function (
+    useCustomXAxisTitle,
+    chartObject,
+    favoriteExtensions
+) {
+    return useCustomXAxisTitle
+        ? getCustomXAxisLabels(chartObject, favoriteExtensions)
+        : getDefaultXAxisLabels(chartObject);
+};
 
 /**
  * 
