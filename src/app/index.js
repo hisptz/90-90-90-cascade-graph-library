@@ -469,38 +469,4 @@ const getSanitizedSeriesTargetValue = function (initialTarget, chartObject) {
         : [];
 };
 
-/**
- * 
- * @param {array} indicatorArray 
- */
-const getAverageIndicatorValue = function (indicatorArray) {
-    return indicatorArray ? findAverage(indicatorArray) : 0;
-};
-
-/**
- * 
- * @param {array} indicatorArray 
- */
-const getTotalIndicatorValue = function (indicatorArray) {
-    return indicatorArray ? findSummation(indicatorArray) : 0;
-};
-
-/**
- * 
- * @param {array} indicatorArray 
- */
-const findSummation = function (indicatorArray) {
-    return indicatorArray ? indicatorArray.reduce((a, b) => a + b, 0) : 0;
-};
-
-/**
- * 
- * @param {array} indicatorArray 
- */
-const findAverage = function (indicatorArray) {
-    return indicatorArray
-        ? findSummation(indicatorArray) / indicatorArray.length
-        : 0;
-};
-
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
