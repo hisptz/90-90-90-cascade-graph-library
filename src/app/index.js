@@ -29,24 +29,22 @@ const getChartTypeConfiguration = function (ctype, chartObject) {
         : { ...chartObject.chart, type: 'column' };
 };
 
+
+
 /**
- *
- * @param {boolean} useCustomSeriesTitle
- * @param {object} chartObject
- * @param {object} favoriteExtension
+ * 
+ * @param {boolean} useCustomChartTitle 
+ * @param {object} chartObject 
+ * @param {object} favoriteExtension 
  */
 const getChartTitleConfiguration = function (
-    useCustomSeriesTitle,
+    useCustomChartTitle,
     chartObject,
     favoriteExtension
 ) {
-    return !useCustomSeriesTitle
-        ? {
-            text: favoriteExtension.name,
-        }
-        : {
-            text: chartObject.title.text,
-        };
+    return useCustomChartTitle
+        ? { ...chartObject.title, text: favoriteExtension.name }
+        : { ...chartObject.title, text: chartObject.title.text };
 };
 
 /**
