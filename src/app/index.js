@@ -257,7 +257,6 @@ const getSeriesConfigurations = function (initialTarget, chartObject) {
     ];
 };
 
-
 /**
  * 
  * @param {number} data 
@@ -323,38 +322,151 @@ const calculatePercentForTargetedValues = function (
     }
 };
 
+
 /**
  * 
- * @param {array} indicatorArray 
+ * @param {number} index 
  */
-const getAverageIndicatorValue = function (indicatorArray) {
-    return indicatorArray ? findAverage(indicatorArray) : 0;
+const getColorOptionForInitialValues = function (index) {
+    if (index >= 1 && index <= 2) {
+        return '#ffffff';
+    } else {
+        return '#66ccff';
+    }
+};
+
+
+/**
+ * 
+ * @param {number} index 
+ */
+const getColorOptionForTargetValues = function (index) {
+    return '#66ccff';
 };
 
 /**
  * 
- * @param {array} indicatorArray 
+ * @param {number} index 
+ * @param {number} initialTarget 
+ * @param {array} sanitizedSeriesData 
  */
-const getTotalIndicatorValue = function (indicatorArray) {
-    return indicatorArray ? findSummation(indicatorArray) : 0;
+const getInitialData = function (index, initialTarget, sanitizedSeriesData) {
+    if (index == 0) {
+        return initialTarget;
+    } else if (index >= 1 && index <= 2) {
+        return parseFloat((initialTarget * (90 / 100)).toFixed(2));
+    } else if (index >= 3 && index <= 4) {
+        return parseFloat(sanitizedSeriesData[index].toFixed(2));
+    }
 };
 
 /**
  * 
- * @param {array} indicatorArray 
+ * @param {number} index 
+ * @param {number} initialTarget 
+ * @param {array} sanitizedSeriesData 
  */
-const findSummation = function (indicatorArray) {
-    return indicatorArray ? indicatorArray.reduce((a, b) => a + b, 0) : 0;
+const getTargetData = function (index, initialTarget, sanitizedSeriesData) {
+    if (index >= 1 && index <= 2) {
+        return sanitizedSeriesData ? sanitizedSeriesData[index] : 0;
+    }
+};
+
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getSeriesDataValue = function (initialTarget, chartObject) {
+    return chartObject && initialTarget
+        ? [initialTarget].concat(
+            _.map(chartObject.series, item => parseFloat(item.data[0].y))
+        )
+        : [];
 };
 
 /**
  * 
- * @param {array} indicatorArray 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
  */
-const findAverage = function (indicatorArray) {
-    return indicatorArray
-        ? findSummation(indicatorArray) / indicatorArray.length
+const findSummation = function (initialTarget, chartObject) {
+    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const indicatorData = [
+        indicatorArray[indicatorArray.length - 1],
+        indicatorArray[indicatorArray.length - 2],
+    ];
+    return indicatorData ? indicatorData.reduce((a, b) => a + b, 0) : 0;
+};
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const findAverage = function (initialTarget, chartObject) {
+    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const indicatorData = [
+        indicatorArray[indicatorArray.length - 1],
+        indicatorArray[indicatorArray.length - 2],
+    ];
+    return indicatorData
+        ? parseFloat(
+            findSummation(initialTarget, chartObject) / indicatorData.length
+        )
         : 0;
+};
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getIndicatorPercentage = function (initialTarget, chartObject) {
+    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const total = getTotalIndicatorValue(initialTarget, chartObject);
+    return indicatorArray && total
+        ? parseFloat(
+            (indicatorArray[indicatorArray.length - 2] / total * 100).toFixed(2)
+        )
+        : 0;
+};
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getAverageIndicatorValue = function (initialTarget, chartObject) {
+    return initialTarget && chartObject
+        ? findAverage(initialTarget, chartObject)
+        : 0;
+};
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getTotalIndicatorValue = function (initialTarget, chartObject) {
+    return initialTarget && chartObject
+        ? findSummation(initialTarget, chartObject)
+        : 0;
+};
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getSanitizedSeriesTargetValue = function (initialTarget, chartObject) {
+    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const total = getTotalIndicatorValue(initialTarget, chartObject);
+    const average = getAverageIndicatorValue(initialTarget, chartObject);
+    return initialTarget && chartObject
+        ? [..._.take(indicatorArray, 3), total, average]
+        : [];
 };
 
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
