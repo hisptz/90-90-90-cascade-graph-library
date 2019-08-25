@@ -68,34 +68,15 @@ const getCustomXAxisLabels = function (chartObject, favoriteExtensions) {
     }
 };
 
-/**
- * 
- * @param {object} chartObject 
- * @param {object} favoriteExtensions 
- */
-const getCustomXAxisLabels = function (chartObject, favoriteExtensions) {
-    const xAxisLabels = [];
-    if (chartObject) {
-        chartObject.series.forEach(item => {
-            if (item) {
-                favoriteExtensions.extensions.forEach(ext => {
-                    if (ext.id == item.id) {
-                        xAxisLabels.push(ext.name);
-                    }
-                });
-            }
-        });
-        return xAxisLabels;
-    }
-};
 
 /**
  * 
  * @param {object} chartObject 
  */
 const getDefaultXAxisLabels = function (chartObject) {
-    return chartObject ? _.map(chartObject.series, item => item.name) : [];
+    return chartOBJ ? _.map(chartOBJ.series, item => item.name) : [];
 };
+
 
 /**
  * 
