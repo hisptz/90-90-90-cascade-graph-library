@@ -109,6 +109,26 @@ const getYAxisChartConfigurations = function () {
     };
 };
 
+
+const getPlotOptionsConfigurations = function () {
+    return {
+        series: {
+            dataLabels: {
+                enabled: true,
+                inside: true
+            },
+            stacking: 'normal',
+            grouping: false,
+            shadow: false,
+            borderWidth: 0,
+            enableMouseTracking: false,
+            allowPointSelect: true,
+            verticalAlign: 'top',
+            align: 'center',
+        }
+    }
+}
+
 /**
  * 
  * @param {array} indicatorArray 
