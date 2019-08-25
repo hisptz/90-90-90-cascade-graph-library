@@ -127,7 +127,6 @@ const getPlotOptionsConfigurations = function () {
     };
 };
 
-
 /**
  * 
  * @param {number} initialTarget 
@@ -151,6 +150,36 @@ const getTargetSeriesData = function (initialTarget, chartObject) {
             },
         ],
         data: getTargetedSeriesData(initialTarget, chartObject),
+    };
+};
+
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getInitialSeriesData = function (initialTarget, chartObject) {
+    return {
+        name: 'Targets',
+        stack: 1,
+        zIndex: 1,
+        pointPadding: 0,
+        dashStyle: 'dash',
+        borderColor: '#66ccff',
+        borderWidth: 1,
+        dataLabels: [
+            {
+                align: 'center',
+                format: '{point.percent}%',
+                verticalAlign: 'top',
+                align: 'center',
+                style: {
+                    color: 'black',
+                },
+            },
+        ],
+        data: getInitializedSeriesData(initialTarget, chartObject),
     };
 };
 
