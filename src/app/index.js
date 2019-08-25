@@ -245,21 +245,82 @@ const getTargetedSeriesData = function (initialTarget, chartObject) {
     });
 };
 
-
-
 /**
  * 
  * @param {boolean} initialTarget 
  * @param {*} chartObject 
  */
-const getSeriesConfigurations = function (
-    initialTarget,
-    chartObject,
-) {
+const getSeriesConfigurations = function (initialTarget, chartObject) {
     return [
         getInitialSeriesData(initialTarget, chartObject),
         getTargetSeriesData(initialTarget, chartObject),
     ];
+};
+
+
+/**
+ * 
+ * @param {number} data 
+ * @param {number} index 
+ * @param {array} sanitizedSeriesData 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const calculatePercentForInitialValues = function (
+    data,
+    index,
+    sanitizedSeriesData,
+    initialTarget,
+    chartObject
+) {
+    if (index == 0) {
+        return parseFloat((data / data * 100).toFixed(2));
+    } else if (index >= 1 && index <= 2) {
+        return parseFloat(
+            (data / sanitizedSeriesData[index - 1] * 100).toFixed(2)
+        );
+    } else if (index == 3) {
+        return parseFloat(
+            (sanitizedSeriesData[index] / sanitizedSeriesData[index] * 100).toFixed(
+                2
+            )
+        );
+    } else if (index == 4) {
+        return getIndicatorPercentage(initialTarget, chartObject);
+    }
+};
+
+/**
+ * 
+ * @param {number} data 
+ * @param {number} index 
+ * @param {array} sanitizedSeriesData 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const calculatePercentForTargetedValues = function (
+    data,
+    index,
+    sanitizedSeriesData,
+    initialTarget,
+    chartObject
+) {
+    if (index == 1) {
+        return parseFloat(
+            (sanitizedSeriesData[index] /
+                (initialTarget * (90 / 100)) *
+                100).toFixed(2)
+        );
+    } else if (index == 2) {
+        return parseFloat(
+            (sanitizedSeriesData[index] /
+                (initialTarget * (90 / 100)) *
+                (90 / 100) *
+                100).toFixed(2)
+        );
+    } else if (index == 3) {
+        return 100;
+    }
 };
 
 /**
