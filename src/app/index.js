@@ -29,8 +29,6 @@ const getChartTypeConfiguration = function (ctype, chartObject) {
         : { ...chartObject.chart, type: 'column' };
 };
 
-
-
 /**
  * 
  * @param {boolean} useCustomChartTitle 
@@ -60,21 +58,25 @@ const getCustomXAxisLabels = function (chartObject, favoriteExtensions) {
                 favoriteExtensions.extensions.forEach(ext => {
                     if (ext.id == item.id) {
                         xAxisLabels.push(ext.name);
+                    } else {
+                        xAxisLabels.push(ext.name);
                     }
                 });
             }
         });
-        return xAxisLabels;
+        return _.uniq(xAxisLabels);
     }
 };
+
 
 /**
  * 
  * @param {object} chartObject 
  */
 const getDefaultXAxisLabels = function (chartObject) {
-    return chartObject ? _.map(chartObject.series, item => item.name) : [];
+    return chartOBJ ? _.map(chartOBJ.series, item => item.name) : [];
 };
+
 
 /**
  * 
