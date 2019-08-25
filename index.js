@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+export * from './src/app/index';import * as _ from 'lodash';
 
 /**
  * 
