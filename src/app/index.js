@@ -207,7 +207,6 @@ const getInitializedSeriesData = function (initialTarget, chartObject) {
     });
 };
 
-
 /**
  * 
  * @param {number} initialTarget 
@@ -244,6 +243,23 @@ const getTargetedSeriesData = function (initialTarget, chartObject) {
             };
         }
     });
+};
+
+
+
+/**
+ * 
+ * @param {boolean} initialTarget 
+ * @param {*} chartObject 
+ */
+const getSeriesConfigurations = function (
+    initialTarget,
+    chartObject,
+) {
+    return [
+        getInitialSeriesData(initialTarget, chartObject),
+        getTargetSeriesData(initialTarget, chartObject),
+    ];
 };
 
 /**
