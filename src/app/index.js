@@ -92,21 +92,6 @@ const getXAxisChartConfigurations = function (
         : getDefaultXAxisLabels(chartObject);
 };
 
-/**
- * 
- * @param {boolean} useCustomXAxisTitle 
- * @param {object} chartObject 
- * @param {object} favoriteExtensions 
- */
-const getXAxisChartConfigurations = function (
-    useCustomXAxisTitle,
-    chartObject,
-    favoriteExtensions
-) {
-    return useCustomXAxisTitle
-        ? getCustomXAxisLabels(chartObject, favoriteExtensions)
-        : getDefaultXAxisLabels(chartObject);
-};
 
 const getYAxisChartConfigurations = function () {
     return {
@@ -120,9 +105,6 @@ const getYAxisChartConfigurations = function () {
             },
             enabled: true,
             verticalAlign: 'top',
-            formatter: function () {
-                return this.total;
-            },
         },
     };
 };
