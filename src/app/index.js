@@ -19,15 +19,14 @@ const GenerateCascadeGraph = function (
 };
 
 /**
- *
- * @param {string} ctype
+ * 
+ * @param {string} ctype 
+ * @param {object} chartObject 
  */
-const getChartTypeConfiguration = function (ctype) {
-    return ctype == undefined ? {
-        type: ctype,
-    } : {
-            type: 'column',
-        };
+const getChartTypeConfiguration = function (ctype, chartObject) {
+    return ctype == undefined
+        ? { ...chartObject.chart, type: ctype }
+        : { ...chartObject.chart, type: 'column' };
 };
 
 /**
@@ -41,9 +40,11 @@ const getChartTitleConfiguration = function (
     chartObject,
     favoriteExtension
 ) {
-    return !useCustomSeriesTitle ? {
-        text: favoriteExtension.name,
-    } : {
+    return !useCustomSeriesTitle
+        ? {
+            text: favoriteExtension.name,
+        }
+        : {
             text: chartObject.title.text,
         };
 };
@@ -88,9 +89,9 @@ const getXAxisChartConfigurations = function (
     chartObject,
     favoriteExtensions
 ) {
-    return useCustomXAxisTitle ?
-        getCustomXAxisLabels(chartObject, favoriteExtensions) :
-        getDefaultXAxisLabels(chartObject);
+    return useCustomXAxisTitle
+        ? getCustomXAxisLabels(chartObject, favoriteExtensions)
+        : getDefaultXAxisLabels(chartObject);
 };
 
 const getYAxisChartConfigurations = function () {
@@ -112,15 +113,13 @@ const getYAxisChartConfigurations = function () {
     };
 };
 
-
 /**
  * 
  * @param {array} indicatorArray 
  */
 const getAverageIndicatorValue = function (indicatorArray) {
     return indicatorArray ? findAverage(indicatorArray) : 0;
-}
-
+};
 
 /**
  * 
@@ -128,8 +127,7 @@ const getAverageIndicatorValue = function (indicatorArray) {
  */
 const getTotalIndicatorValue = function (indicatorArray) {
     return indicatorArray ? findSummation(indicatorArray) : 0;
-}
-
+};
 
 /**
  * 
@@ -137,14 +135,16 @@ const getTotalIndicatorValue = function (indicatorArray) {
  */
 const findSummation = function (indicatorArray) {
     return indicatorArray ? indicatorArray.reduce((a, b) => a + b, 0) : 0;
-}
+};
 
 /**
  * 
  * @param {array} indicatorArray 
  */
 const findAverage = function (indicatorArray) {
-    return indicatorArray ? findSummation(indicatorArray) / indicatorArray.length : 0;
-}
+    return indicatorArray
+        ? findSummation(indicatorArray) / indicatorArray.length
+        : 0;
+};
 
 exports.GenerateCascadeGraph = GenerateCascadeGraph;
