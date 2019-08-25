@@ -1,21 +1,73 @@
 /**
- *
- * @param {boolean} useCustomSeriesTitle
- * @param {string} config
- * @param {string} context
- * @param {string} ctype
- * @param {object} chartObject
- * @param {object} favoriteExtension
+ * 
+ * @param {boolean} useCustomChartTitle 
+ * @param {boolean} useCustomXAxisTitle 
+ * @param {string} config 
+ * @param {string} context 
+ * @param {string} ctype 
+ * @param {object} chartObject 
+ * @param {object} chartExtension 
+ * @param {*} startingTarget 
  */
-const GenerateCascadeGraph = function (
-    useCustomSeriesTitle,
+exports.GenerateCascadeGraph = function (
+    useCustomChartTitle,
+    useCustomXAxisTitle,
     config,
     context,
     ctype,
     chartObject,
-    favoriteExtension
+    chartExtension,
+    initialTarget
 ) {
-    return 'generated_chart_object';
+    return {
+        chart: getChartTypeConfiguration(ctype, chartObject),
+        title: getChartTitleConfiguration(
+            useCustomChartTitle,
+            chartObject,
+            chartExtension
+        ),
+        subtitle: chartObject.subtitle,
+        credits: chartObject.credits,
+        colors: chartObject.colors,
+        xAxis: {
+            categories: getXAxisChartConfigurations(
+                useCustomXAxisTitle,
+                chartObject,
+                chartExtension
+            ),
+        },
+        yAxis: getYAxisChartConfigurations(),
+        legend: getLegendConfigurations(),
+        plotOptions: getPlotOptionsConfigurations(),
+        tooltip: chartObject.exporting,
+        exporting: chartObject.exporting,
+        series: getSeriesConfigurations(
+            initialTarget,
+            chartObject,
+            chartExtension
+        ),
+    };
+};
+
+/**
+ * 
+ */
+
+const getLegendConfigurations = function () {
+    return {
+        reversed: true,
+        enabled: false,
+    };
+};
+
+/**
+ * 
+ */
+
+const getTooltipCOnfiguration = function () {
+    return {
+        enabled: true,
+    };
 };
 
 /**
@@ -322,7 +374,6 @@ const calculatePercentForTargetedValues = function (
     }
 };
 
-
 /**
  * 
  * @param {number} index 
@@ -334,7 +385,6 @@ const getColorOptionForInitialValues = function (index) {
         return '#66ccff';
     }
 };
-
 
 /**
  * 
@@ -371,7 +421,6 @@ const getTargetData = function (index, initialTarget, sanitizedSeriesData) {
         return sanitizedSeriesData ? sanitizedSeriesData[index] : 0;
     }
 };
-
 
 /**
  * 
@@ -468,5 +517,3 @@ const getSanitizedSeriesTargetValue = function (initialTarget, chartObject) {
         ? [..._.take(indicatorArray, 3), total, average]
         : [];
 };
-
-exports.GenerateCascadeGraph = GenerateCascadeGraph;
