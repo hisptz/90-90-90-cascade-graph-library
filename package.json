@@ -1,11 +1,12 @@
 {
-  "name": "@iapps/90-90-90-cascade",
-  "version": "1.0.0",
+  "name": "@iapps/cascade-graph",
+  "version": "1.0.0-alpha.1",
   "description": "90-90-90 HIV Prevention, Engagement and Care Cascade Graph(i.e Treatment target graph to help end the AIDS epidemic)",
   "main": "index.js",
   "scripts": {
     "start": "node src/app/index.js",
-    "test": "mocha"
+    "test": "mocha",
+    "publish": "publish --access=public"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
   "homepage": "https://github.com/hisptz/90-90-90-cascade-graph-library#readme",
   "devDependencies": {
     "mocha": "^6.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
   }
 }
