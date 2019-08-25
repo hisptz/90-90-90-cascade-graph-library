@@ -153,7 +153,6 @@ const getTargetSeriesData = function (initialTarget, chartObject) {
     };
 };
 
-
 /**
  * 
  * @param {number} initialTarget 
@@ -181,6 +180,70 @@ const getInitialSeriesData = function (initialTarget, chartObject) {
         ],
         data: getInitializedSeriesData(initialTarget, chartObject),
     };
+};
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getInitializedSeriesData = function (initialTarget, chartObject) {
+    const sanitizedSeriesData = getSanitizedSeriesTargetValue(
+        initialTarget,
+        chartObject
+    );
+    return _.map(sanitizedSeriesData, (data, index) => {
+        return {
+            y: getInitialData(index, initialTarget, sanitizedSeriesData),
+            percent: calculatePercentForInitialValues(
+                data,
+                index,
+                sanitizedSeriesData,
+                initialTarget,
+                chartObject
+            ),
+            color: getColorOptionForInitialValues(index),
+        };
+    });
+};
+
+
+/**
+ * 
+ * @param {number} initialTarget 
+ * @param {object} chartObject 
+ */
+const getTargetedSeriesData = function (initialTarget, chartObject) {
+    const sanitizedSeriesData = getSanitizedSeriesTargetValue(
+        initialTarget,
+        chartObject
+    );
+    return _.map(sanitizedSeriesData, (data, index) => {
+        if (index >= 1 && index <= 2) {
+            return {
+                y: getTargetData(index, initialTarget, sanitizedSeriesData),
+                percent: calculatePercentForTargetedValues(
+                    data,
+                    index,
+                    sanitizedSeriesData,
+                    initialTarget,
+                    chartObject
+                ),
+                color: getColorOptionForTargetValues(index),
+            };
+        } else {
+            return {
+                percent: calculatePercentForTargetedValues(
+                    data,
+                    index,
+                    sanitizedSeriesData,
+                    initialTarget,
+                    chartObject
+                ),
+                color: getColorOptionForTargetValues(index),
+            };
+        }
+    });
 };
 
 /**
