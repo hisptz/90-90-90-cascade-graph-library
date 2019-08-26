@@ -438,7 +438,7 @@ const finalResultExpected = {
 
 describe('GenerateCascadeGraph', function () {
     describe('add GenerateCascadeGraph', function () {
-        it('return GenerateCascadeGraphObject', function () {
+        it('Should return the valid highchart chart object to be drawn', function () {
             var result = GenerateCascadeGraph.GenerateCascadeGraph(
                 false,
                 true,

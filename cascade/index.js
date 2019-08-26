@@ -24,7 +24,7 @@ const getLegendConfigurations = () => {
 
 /**
  * 
- * @param {number} index 
+ * @param {number} pos 
  */
 const getColorOptionForInitialValues = pos => {
     if (pos >= 1 && pos <= 2) {
@@ -75,7 +75,7 @@ const getInitialData = (pos, initialTarget, sanitizedSeriesData) => {
     } else if (pos === 2) {
         return parseFloat((initialTarget * (90 / 100) * (90 / 100)).toFixed(2));
     } else if (pos >= 3 && pos <= 4) {
-        return parseFloat(sanitizedSeriesData[index].toFixed(2));
+        return parseFloat(sanitizedSeriesData[pos].toFixed(2));
     }
 };
 
@@ -358,29 +358,29 @@ const getTargetedSeriesData = (initialTarget, chartObject) => {
         initialTarget,
         chartObject
     );
-    return _.map(sanitizedSeriesData, (data, index) => {
-        if (index >= 1 && index <= 2) {
+    return _.map(sanitizedSeriesData, (data, pos) => {
+        if (pos >= 1 && pos <= 2) {
             return {
-                y: getTargetData(index, initialTarget, sanitizedSeriesData),
+                y: getTargetData(pos, initialTarget, sanitizedSeriesData),
                 percent: calculatePercentForTargetedValues(
                     data,
-                    index,
+                    pos,
                     sanitizedSeriesData,
                     initialTarget,
                     chartObject
                 ),
-                color: getColorOptionForTargetValues(index),
+                color: getColorOptionForTargetValues(pos),
             };
         } else {
             return {
                 percent: calculatePercentForTargetedValues(
                     data,
-                    index,
+                    pos,
                     sanitizedSeriesData,
                     initialTarget,
                     chartObject
                 ),
-                color: getColorOptionForTargetValues(index),
+                color: getColorOptionForTargetValues(pos),
             };
         }
     });
@@ -395,7 +395,7 @@ const getTargetSeriesData = (initialTarget, chartObject) => {
     return {
         name: 'Achieved',
         stack: 2,
-        zIndex: 2,
+        zpos: 2,
         pointPadding: 0,
         dataLabels: [
             {
@@ -421,17 +421,17 @@ const getInitializedSeriesData = (initialTarget, chartObject) => {
         initialTarget,
         chartObject
     );
-    return _.map(sanitizedSeriesData, (data, index) => {
+    return _.map(sanitizedSeriesData, (data, pos) => {
         return {
-            y: getInitialData(index, initialTarget, sanitizedSeriesData),
+            y: getInitialData(pos, initialTarget, sanitizedSeriesData),
             percent: calculatePercentForInitialValues(
                 data,
-                index,
+                pos,
                 sanitizedSeriesData,
                 initialTarget,
                 chartObject
             ),
-            color: getColorOptionForInitialValues(index),
+            color: getColorOptionForInitialValues(pos),
         };
     });
 };
@@ -445,7 +445,7 @@ const getInitialSeriesData = (initialTarget, chartObject) => {
     return {
         name: 'Targets',
         stack: 1,
-        zIndex: 1,
+        zpos: 1,
         pointPadding: 0,
         dashStyle: 'dash',
         borderColor: '#66ccff',
