@@ -1,12 +1,12 @@
 {
-  "name": "@iapps/cascade-graph",
-  "version": "1.0.0-alpha.1",
+  "name": "@iapps/visualization",
+  "version": "1.0.0-alpha.2",
   "description": "90-90-90 HIV Prevention, Engagement and Care Cascade Graph(i.e Treatment target graph to help end the AIDS epidemic)",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app/index.js",
+    "start": "node ./index.js",
     "test": "mocha",
-    "publish": "publish --access=public"
+    "publish": "npm publish --access=public"
   },
   "repository": {
     "type": "git",

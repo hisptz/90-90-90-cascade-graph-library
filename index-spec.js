@@ -1,5 +1,5 @@
 var assert = require('assert');
-var GenerateCascadeGraph = require('../src/app/index');
+var GenerateCascadeGraph = require('./index');
 
 const chartObject = {
     chart: {
