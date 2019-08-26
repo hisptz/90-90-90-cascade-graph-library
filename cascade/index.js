@@ -476,7 +476,7 @@ const getSeriesConfigurations = (initialTarget, chartObject) => {
     ];
 };
 
-exports.GenerateCascadeGraph(
+export const GenerateCascadeGraph = (
     useCustomChartTitle,
     useCustomXAxisTitle,
     config,
@@ -485,7 +485,7 @@ exports.GenerateCascadeGraph(
     chartObject,
     chartExtension,
     initialTarget
-) {
+) => {
     return {
         chart: getChartTypeConfiguration(ctype, chartObject),
         title: getChartTitleConfiguration(
