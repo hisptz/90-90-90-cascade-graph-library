@@ -1,6 +1,6 @@
 {
   "name": "@iapps/visualization",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "90-90-90 HIV Prevention, Engagement and Care Cascade Graph(i.e Treatment target graph to help end the AIDS epidemic)",
   "main": "index.js",
   "scripts": {
