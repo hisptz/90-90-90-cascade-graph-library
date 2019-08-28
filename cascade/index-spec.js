@@ -249,197 +249,197 @@ const chartExtension = {
 };
 
 const initialValue = 1600000;
-const finalResultExpected = {
-    chart: {
-        renderTo: 'RP5XsLu0JEV',
-        zoomType: 'xy',
-        type: 'column',
+const startingChartObject = {
+    "chart": {
+        "renderTo": "RP5XsLu0JEV",
+        "zoomType": "xy",
+        "type": "column"
     },
-    title: {
-        text: 'Cainamist New Chart Type',
-        align: 'center',
-        style: {
-            fontWeight: '500',
-            fontSize: '16px',
-        },
+    "title": {
+        "text": "Cainamist New Chart Type",
+        "align": "center",
+        "style": {
+            "fontWeight": "500",
+            "fontSize": "16px"
+        }
     },
-    subtitle: {
-        text: 'MOH - Tanzania',
-        align: 'center',
-        style: {
-            fontWeight: '500',
-            fontSize: '12px',
-        },
+    "subtitle": {
+        "text": "MOH - Tanzania",
+        "align": "center",
+        "style": {
+            "fontWeight": "500",
+            "fontSize": "12px"
+        }
     },
-    credits: {
-        enabled: false,
+    "credits": {
+        "enabled": false
     },
-    colors: [
-        '#A9BE3B',
-        '#558CC0',
-        '#D34957',
-        '#FF9F3A',
-        '#968F8F',
-        '#B7409F',
-        '#FFDA64',
-        '#4FBDAE',
-        '#B78040',
-        '#676767',
-        '#6A33CF',
-        '#4A7833',
-        '#434348',
-        '#7CB5EC',
-        '#F7A35C',
-        '#F15C80',
+    "colors": [
+        "#A9BE3B",
+        "#558CC0",
+        "#D34957",
+        "#FF9F3A",
+        "#968F8F",
+        "#B7409F",
+        "#FFDA64",
+        "#4FBDAE",
+        "#B78040",
+        "#676767",
+        "#6A33CF",
+        "#4A7833",
+        "#434348",
+        "#7CB5EC",
+        "#F7A35C",
+        "#F15C80"
     ],
-    xAxis: {
-        categories: [
-            'Custom Title 1',
-            'Custom Title 2',
-            'Custom Title 3',
-            'Custom Title 4',
-            'Custom Title 5',
-        ],
+    "xAxis": {
+        "categories": [
+            "Custom Title 1",
+            "Custom Title 2",
+            "Custom Title 3",
+            "Custom Title 4",
+            "Custom Title 5"
+        ]
     },
-    yAxis: {
-        min: 0,
-        title: {
-            text: '',
+    "yAxis": {
+        "min": 0,
+        "title": {
+            "text": ""
         },
-        stackLabels: {
-            style: {
-                color: 'black',
+        "stackLabels": {
+            "style": {
+                "color": "black"
             },
-            enabled: true,
-            verticalAlign: 'top',
-        },
+            "enabled": true,
+            "verticalAlign": "top"
+        }
     },
-    legend: {
-        reversed: true,
-        enabled: false,
+    "legend": {
+        "reversed": true,
+        "enabled": false
     },
-    plotOptions: {
-        series: {
-            dataLabels: {
-                enabled: true,
-                inside: true,
+    "plotOptions": {
+        "series": {
+            "dataLabels": {
+                "enabled": true,
+                "inside": true
             },
-            stacking: 'normal',
-            grouping: false,
-            shadow: false,
-            borderWidth: 0,
-            enableMouseTracking: false,
-            allowPointSelect: true,
-            verticalAlign: 'top',
-            align: 'center',
-        },
+            "stacking": "normal",
+            "grouping": false,
+            "shadow": false,
+            "borderWidth": 0,
+            "enableMouseTracking": false,
+            "allowPointSelect": true,
+            "verticalAlign": "top",
+            "align": "center"
+        }
     },
-    tooltip: {
-        buttons: {
-            contextButton: {
-                enabled: false,
-            },
-        },
+    "tooltip": {
+        "buttons": {
+            "contextButton": {
+                "enabled": false
+            }
+        }
     },
-    exporting: {
-        buttons: {
-            contextButton: {
-                enabled: false,
-            },
-        },
+    "exporting": {
+        "buttons": {
+            "contextButton": {
+                "enabled": false
+            }
+        }
     },
-    series: [
+    "series": [
         {
-            name: 'Targets',
-            stack: 1,
-            zIndex: 1,
-            pointPadding: 0,
-            dashStyle: 'dash',
-            borderColor: '#66ccff',
-            borderWidth: 1,
-            dataLabels: [
+            "name": "Targets",
+            "stack": 1,
+            "zIndex": 1,
+            "pointPadding": 0,
+            "dashStyle": "dash",
+            "borderColor": "#66ccff",
+            "borderWidth": 2,
+            "dataLabels": [
                 {
-                    align: 'center',
-                    format: '{point.percent}%',
-                    verticalAlign: 'top',
-                    style: {
-                        color: 'black',
-                    },
-                },
+                    "align": "center",
+                    "format": "{point.percent}%",
+                    "verticalAlign": "top",
+                    "style": {
+                        "color": "black"
+                    }
+                }
             ],
-            data: [
+            "data": [
                 {
-                    y: 1600000,
-                    percent: 100,
-                    color: '#66ccff',
+                    "y": 1600000,
+                    "percent": 100,
+                    "color": "#66ccff"
                 },
                 {
-                    y: 1440000,
-                    percent: 75.26,
-                    color: '#ffffff',
+                    "y": 1440000,
+                    "percent": 90,
+                    "color": "#ffffff"
                 },
                 {
-                    y: 1440000,
-                    percent: 97.65,
-                    color: '#ffffff',
+                    "y": 1296000,
+                    "percent": 90,
+                    "color": "#ffffff"
                 },
                 {
-                    y: 114473,
-                    percent: 100,
-                    color: '#66ccff',
+                    "y": 114473,
+                    "percent": 100,
+                    "color": "#66ccff"
                 },
                 {
-                    y: 57236.5,
-                    percent: 99.58,
-                    color: '#66ccff',
-                },
-            ],
+                    "y": 57236.5,
+                    "percent": 99.58,
+                    "color": "#66ccff"
+                }
+            ]
         },
         {
-            name: 'Achieved',
-            stack: 2,
-            zIndex: 2,
-            pointPadding: 0,
-            dataLabels: [
+            "name": "Achieved",
+            "stack": 2,
+            "zIndex": 2,
+            "pointPadding": 0,
+            "dataLabels": [
                 {
-                    align: 'center',
-                    format: '{point.percent}%',
-                    verticalAlign: 'top',
-                    style: {
-                        color: 'black',
-                    },
-                },
+                    "align": "center",
+                    "format": "{point.percent}%",
+                    "verticalAlign": "top",
+                    "style": {
+                        "color": "black"
+                    }
+                }
             ],
-            data: [
+            "data": [
                 {
-                    color: '#66ccff',
+                    "color": "#66ccff"
                 },
                 {
-                    y: 1204178,
-                    percent: 83.62,
-                    color: '#66ccff',
+                    "y": 1204178,
+                    "percent": 83.62,
+                    "color": "#66ccff"
                 },
                 {
-                    y: 1175858,
-                    percent: 73.49,
-                    color: '#66ccff',
+                    "y": 1175858,
+                    "percent": 90.73,
+                    "color": "#66ccff"
                 },
                 {
-                    percent: 100,
-                    color: '#66ccff',
+                    "percent": 100,
+                    "color": "#66ccff"
                 },
                 {
-                    color: '#66ccff',
-                },
-            ],
-        },
-    ],
+                    "color": "#66ccff"
+                }
+            ]
+        }
+    ]
 };
 
 describe('GenerateCascadeGraph', function () {
-    describe('add GenerateCascadeGraph', function () {
-        it('Should return the valid highchart chart object to be drawn', function () {
-            var result = GenerateCascadeGraph.GenerateCascadeGraph(
+    describe('Generate HIV Care and Treatment Cascade Graph(90-90-90 Cascade Graph)', function () {
+        it("Should return the valid highchart chart object to be drawn 'HIV Cascade Graph'", function () {
+            const result = GenerateCascadeGraph.GenerateCascadeGraph(
                 false,
                 true,
                 'nacp',
@@ -449,7 +449,9 @@ describe('GenerateCascadeGraph', function () {
                 chartExtension,
                 initialValue
             );
-            assert.equal(result, finalResultExpected);
+            const initialChartObject = JSON.stringify(startingChartObject);
+            const finalChartObject = JSON.stringify(result);
+            assert.equal(initialChartObject, finalChartObject);
         });
     });
 });

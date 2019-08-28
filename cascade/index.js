@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
-
+// import * as _ from 'lodash';
+var _ = require('lodash');
 /**
  *
  * @param {boolean} useCustomChartTitle
@@ -395,7 +395,7 @@ const getTargetSeriesData = (initialTarget, chartObject) => {
     return {
         name: 'Achieved',
         stack: 2,
-        zpos: 2,
+        zIndex: 2,
         pointPadding: 0,
         dataLabels: [
             {
@@ -445,7 +445,7 @@ const getInitialSeriesData = (initialTarget, chartObject) => {
     return {
         name: 'Targets',
         stack: 1,
-        zpos: 1,
+        zIndex: 1,
         pointPadding: 0,
         dashStyle: 'dash',
         borderColor: '#66ccff',
@@ -476,7 +476,7 @@ const getSeriesConfigurations = (initialTarget, chartObject) => {
     ];
 };
 
-export const GenerateCascadeGraph = (
+exports.GenerateCascadeGraph = (
     useCustomChartTitle,
     useCustomXAxisTitle,
     config,
