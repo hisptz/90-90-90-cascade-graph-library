@@ -31,10 +31,67 @@ Powerful momentum is now building towards a new narrative on HIV treatment and a
 [Highcharts 90-90-90 Cascade Graph](https://www.npmjs.com/package/@iapps90-90-90-cascade) is [Javascript](https://www.npmjs.com/package/@iapps90-90-90-cascade) library built on top of [Highcharts](https://www.highcharts.com) to support the HIV/AIDS cascade implementation in treatment target(already set as mentioned above) to help end the AIDS epidemic.
 Development Team from [UDSM](http://www.udsm.ac.tz) develop and maintain this library to ensure visual and usability consistency of the in all system where will it be installed.
 
-## Installation
-To install the Highchart 90-90-90 Cascade Graph run the following npm command [@iapps/90-90-90-cascade](https://www.npmjs.com/package/@iapps/90-90-90-cascade)
-> npm i @iapps/90-90-90-cascade
+## Installation & Usage
+To install the Highchart 90-90-90 Cascade Graph run the following npm command [@npm i @iapps/visualization](https://www.npmjs.com/package/@iapps/visualization)
+### Install 
+> `npm i @iapps/visualization`
 
+
+After installation in your [Angular](https://www.npmjs.com/package/@iapps/visualization) Project, then import the following dependencies to prepare environmant for drawing the HIV Treatment and Care Cascade Graph.
+
+### Import
+> `import { GenerateCascadeGraph } from '@iapps/visualization/cascade';`
+
+### Parameters
+> `* @param {boolean} useCustomChartTitle`
+
+> `* @param {boolean} useCustomXAxisTitle`
+
+> `* @param {string} config`
+
+> `* @param {string} context`
+
+> `* @param {string} ctype`
+
+> `* @param {object} chartObject`
+
+> `* @param {object} chartExtension`
+
+> `* @param {number} initialTarget`
+
+### Use
+
+Call the method **`GenerateCascadeGraph()`** as pass the following parameters
+- **useCustomChartTitle**: it is the `boolean` value parameter allow the visualization to use the custom chart title defined in the favorite extension in the dataStore
+
+- **useCustomXAxisTitle**: it is the `boolean` value parameter allow the visualization to use the custom categories title defined in the favorite extension in the dataStore
+`
+- **config**: it is the `string` value parameter allow the user to defined the configurations for the chart to be used Eg: **'nacp'**
+
+- **context**: it is the `string` value parameter allow the user to defined the context that this chart will be used  Eg: **'dhis2'** - **[DHIS2](https://www.dhis2.org/)**
+
+- **ctype**: it is the `string` value parameter allow the user to defined the chart type to be used for the Cascade Graph  Eg: **'column'** and **'bar'**
+
+- **chartObject**: it is the `object` value parameter allow the user to pass visualization chart object to be passed as used to draw the Cascade Graph.
+
+- **chartExtension**: it is the `object` value parameter allow the user to pass favorite extensions for each fovorite in the context of **[DHIS2](https://www.dhis2.org/)**.
+
+- **initialTarget**: it is the `number` value parameter allow the user to pass the initial value to c=start cascading to other data values Eg. In the case of NACP the initial value is `16000000` using **[DHIS2](https://www.dhis2.org/)**.
+
+`
+ GenerateCascadeGraph(
+    true,
+    true,
+    'nacp',
+    'dhis2',
+    'bar',
+    chartObjects,
+    chartExtension,
+    1600000
+ )
+`
+
+The method above will return the standard [Highcharts](https://www.highcharts.com) chart Object for the **Cascade Graph** for the NACP Treatment and Care Cascade Graph
 
 ## Features
 - Support drawing the **_column_** 90-90-90 cascade graph for HIV context in [DHIS2](https://www.dhis2.org/)
