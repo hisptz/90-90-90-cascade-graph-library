@@ -13,8 +13,8 @@ var _ = require('lodash');
  */
 
 /**
-  * No arguements
-  */
+ * No arguements
+ */
 const getLegendConfigurations = () => {
     return {
         reversed: true,
@@ -23,8 +23,8 @@ const getLegendConfigurations = () => {
 };
 
 /**
- * 
- * @param {number} pos 
+ *
+ * @param {number} pos
  */
 const getColorOptionForInitialValues = pos => {
     if (pos >= 1 && pos <= 2) {
@@ -35,9 +35,9 @@ const getColorOptionForInitialValues = pos => {
 };
 
 /**
- *              
- * @param {number} initialTarget 
- * @param {object} chartObject 
+ *
+ * @param {number} initialTarget
+ * @param {object} chartObject
  */
 const getSeriesDataValue = (initialTarget, chartObject) => {
     return chartObject && initialTarget
@@ -151,6 +151,23 @@ const calculatePercentForTargetedValues = (
  */
 const getIndicatorPercentage = (initialTarget, chartObject) => {
     const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    return indicatorArray
+        ? parseFloat(
+            (indicatorArray[indicatorArray.length - 1] /
+                indicatorArray[indicatorArray.length - 2] *
+                100).toFixed(2)
+        )
+        : 0;
+};
+
+// ToDo: START - Deprecated Implementation
+/**
+ *
+ * @param {number} initialTarget
+ * @param {object} chartObject
+ */
+const getIndicatorPercentageDeprecated = (initialTarget, chartObject) => {
+    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
     const total = getTotalIndicatorValue(initialTarget, chartObject);
     return indicatorArray && total
         ? parseFloat(
@@ -158,12 +175,13 @@ const getIndicatorPercentage = (initialTarget, chartObject) => {
         )
         : 0;
 };
+// ToDo: END - Deprecated Implementation
 
 /**
  *
  * @param {number} pos
  */
-const getColorOptionForTargetValues = (pos) => {
+const getColorOptionForTargetValues = pos => {
     return '#66ccff';
 };
 
@@ -307,6 +325,7 @@ const getPlotOptionsConfigurations = () => {
     };
 };
 
+// ToDo: START - Deprecated Implementation
 /**
  *
  * @param {number} initialTarget
@@ -321,8 +340,12 @@ const findAverage = (initialTarget, chartObject) => {
     return indicatorData
         ? findSummation(initialTarget, chartObject) / indicatorData.length
         : 0;
-};
 
+    return;
+};
+// ToDo: END - Deprecated Implementation
+
+// ToDo: START - Deprecated Implementation
 /**
  *
  * @param {number} initialTarget
@@ -333,6 +356,7 @@ const getAverageIndicatorValue = (initialTarget, chartObject) => {
         ? findAverage(initialTarget, chartObject)
         : 0;
 };
+// ToDo: END - Deprecated Implementation
 
 /**
  *
@@ -342,11 +366,34 @@ const getAverageIndicatorValue = (initialTarget, chartObject) => {
 const getSanitizedSeriesTargetValue = (initialTarget, chartObject) => {
     const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
     const total = getTotalIndicatorValue(initialTarget, chartObject);
+
+    return initialTarget && chartObject
+        ? [
+            ..._.take(indicatorArray, 3),
+            indicatorArray[indicatorArray.length - 2],
+            indicatorArray[indicatorArray.length - 1],
+        ]
+        : [];
+};
+
+// ToDo: START - Deprecated Implementation
+/**
+ *
+ * @param {number} initialTarget
+ * @param {object} chartObject
+ */
+const getSanitizedSeriesTargetValueDeprecated = (
+    initialTarget,
+    chartObject
+) => {
+    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const total = getTotalIndicatorValue(initialTarget, chartObject);
     const average = getAverageIndicatorValue(initialTarget, chartObject);
     return initialTarget && chartObject
         ? [..._.take(indicatorArray, 3), total, average]
         : [];
 };
+// ToDo: END - Deprecated Implementation
 
 /**
  *
@@ -510,4 +557,4 @@ exports.GenerateCascadeGraph = (
         exporting: chartObject.exporting,
         series: getSeriesConfigurations(initialTarget, chartObject),
     };
-}
+};

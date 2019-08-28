@@ -384,13 +384,13 @@ const startingChartObject = {
                     "color": "#ffffff"
                 },
                 {
-                    "y": 114473,
+                    "y": 113988,
                     "percent": 100,
                     "color": "#66ccff"
                 },
                 {
-                    "y": 57236.5,
-                    "percent": 99.58,
+                    "y": 485,
+                    "percent": 0.43,
                     "color": "#66ccff"
                 }
             ]
