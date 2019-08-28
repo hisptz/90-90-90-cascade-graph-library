@@ -34,7 +34,7 @@ Development Team from [UDSM](http://www.udsm.ac.tz) develop and maintain this li
 ## Installation & Usage
 To install the Highchart 90-90-90 Cascade Graph run the following npm command [@npm i @iapps/visualization](https://www.npmjs.com/package/@iapps/visualization)
 ### Install 
-> `npm i @iapps/visualization`
+`npm i @iapps/visualization`
 
 
 After installation in your [Angular](https://www.npmjs.com/package/@iapps/visualization) Project, then import the following dependencies to prepare environmant for drawing the HIV Treatment and Care Cascade Graph.
@@ -43,21 +43,21 @@ After installation in your [Angular](https://www.npmjs.com/package/@iapps/visual
 > `import { GenerateCascadeGraph } from '@iapps/visualization/cascade';`
 
 ### Parameters
-> `* @param {boolean} useCustomChartTitle`
+`* @param {boolean} useCustomChartTitle`
 
-> `* @param {boolean} useCustomXAxisTitle`
+`* @param {boolean} useCustomXAxisTitle`
 
-> `* @param {string} config`
+`* @param {string} config`
 
-> `* @param {string} context`
+`* @param {string} context`
 
-> `* @param {string} ctype`
+`* @param {string} ctype`
 
-> `* @param {object} chartObject`
+`* @param {object} chartObject`
 
-> `* @param {object} chartExtension`
+`* @param {object} chartExtension`
 
-> `* @param {number} initialTarget`
+`* @param {number} initialTarget`
 
 ### Use
 
