@@ -290,9 +290,8 @@ const getXAxisChartConfigurations = (
         : getDefaultXAxisLabels(chartObject);
 };
 
-const getYAxisChartConfigurations = () => {
+const getYAxisChartConfigurations = (chartExtension) => {
     return {
-        min: 0,
         title: {
             text: '',
         },
@@ -303,7 +302,9 @@ const getYAxisChartConfigurations = () => {
             enabled: true,
             verticalAlign: 'top',
         },
-    };
+        max: chartExtension.multiAxisLabels[0].yAxis.max,
+        min: chartExtension.multiAxisLabels[0].yAxis.min
+    }
 };
 
 const getPlotOptionsConfigurations = () => {
@@ -550,7 +551,7 @@ exports.GenerateCascadeGraph = (
                 chartExtension
             ),
         },
-        yAxis: getYAxisChartConfigurations(),
+        yAxis: getYAxisChartConfigurations(chartExtension),
         legend: getLegendConfigurations(),
         plotOptions: getPlotOptionsConfigurations(),
         tooltip: chartObject.exporting,

@@ -202,6 +202,10 @@ const chartExtension = {
             label: '',
             axisDataFormat: '',
             opposite: false,
+            yAxis: {
+                max: null,
+                min: null
+            }
         },
     ],
     chartTypes: [
@@ -302,7 +306,6 @@ const startingChartObject = {
         ]
     },
     "yAxis": {
-        "min": 0,
         "title": {
             "text": ""
         },
@@ -312,7 +315,10 @@ const startingChartObject = {
             },
             "enabled": true,
             "verticalAlign": "top"
-        }
+        },
+        "max": null,
+        "min": null
+
     },
     "legend": {
         "reversed": true,
