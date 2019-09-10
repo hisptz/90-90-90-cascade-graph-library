@@ -20,7 +20,7 @@ before_script:
 
 scripts:
     - npm run test
-    - nyc --reporter=lcov npm run test
+    - nyc --reporter=lcov npm test
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
