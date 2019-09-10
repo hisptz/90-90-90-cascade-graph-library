@@ -1,14 +1,14 @@
 # env:
-#     global: CC_TEST_REPORTER_ID=0335aa593ff1f9e05d61351ad8dee7b3bdc43701e92a2ae4bc03751e33f0c82c
+#     global: CC_TEST_REPORTER_ID=032731043b33937655767fca3c9ecd15eec4b215ad4e6dd1b19280cd5ac29c6a
 
 language: node_js
 
 node_js:
     - 'stable'
 
-addons:
-    code_climate:
-        repo_token: '0335aa593ff1f9e05d61351ad8dee7b3bdc43701e92a2ae4bc03751e33f0c82c'
+# addons:
+#     code_climate:
+#         repo_token: '032731043b33937655767fca3c9ecd15eec4b215ad4e6dd1b19280cd5ac29c6a'
 
 branches:
     only:
@@ -35,7 +35,7 @@ branches:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID='0335aa593ff1f9e05d61351ad8dee7b3bdc43701e92a2ae4bc03751e33f0c82c'
+    - CC_TEST_REPORTER_ID='032731043b33937655767fca3c9ecd15eec4b215ad4e6dd1b19280cd5ac29c6a'
 
 before_script:
   - npm install nyc -g
