@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node cascade/index-spec.js",
-    "test": "nyc mocha cascade",
+    "test": "nyc mocha cascade/*",
     "coverage": "nyc --reporter=lcov ---reporter=text-lcov npm test",
     "deploy": "npm publish --access=public"
   },
