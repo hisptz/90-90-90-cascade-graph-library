@@ -34,7 +34,7 @@ scripts:
 
 after_script:
   # - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build -t lcov --debug --prefix "/home/travis/build/hisptz/90-90-90-cascade-graph-library/cascade" --exit-code $TRAVIS_TEST_RESULT
 
 
 notifications:
