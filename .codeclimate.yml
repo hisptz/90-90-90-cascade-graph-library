@@ -1,0 +1,12 @@
+version: '2'
+exclude_paths:
+  - 'docs'
+  - 'documentation'
+  - 'dist'
+  - '**/*.log'
+  - '**/*.ico'
+  - 'e2e/'
+  - 'src/assets/'
+  - 'cascade/'
+  - 'src/typings.d.ts'
+  - 'src/app/**/*.spec.ts'
