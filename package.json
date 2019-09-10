@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node cascade/index-spec.js",
-    "test": "mocha cascade/index-spec.js",
+    "test": "nyc mocha cascade",
+    "coverage": "nyc --reporter=lcov ---reporter=text-lcov npm test",
     "deploy": "npm publish --access=public"
   },
   "repository": {
@@ -28,7 +29,8 @@
   },
   "homepage": "https://github.com/hisptz/90-90-90-cascade-graph-library#readme",
   "devDependencies": {
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1"
   },
   "dependencies": {
     "lodash": "^4.17.15"
