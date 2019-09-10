@@ -6,6 +6,10 @@ language: node_js
 node_js:
     - 'stable'
 
+cache:
+  directories:
+    - node_modules
+
 branches:
     only:
         - master
@@ -13,18 +17,25 @@ branches:
         - /^greenkeeper/.*$/
 
 before_script:
-  - npm install nyc -g
+  # - npm install nyc -g
+  # - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  # - chmod +x ./cc-test-reporter
+  # - ./cc-test-reporter before-build
+
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
 scripts:
-    - npm run test
-    - npm run coverage
-    - nyc --reporter=lcov npm test
+    # - npm run test
+    # - npm run coverage
+    - npm run test:coverage
+    # - nyc --reporter=lcov npm test
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  # - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT
+
 
 notifications:
     email:
