@@ -7,6 +7,5 @@ exclude_paths:
   - '**/*.ico'
   - 'e2e/'
   - 'src/assets/'
-  - 'cascade/'
   - 'src/typings.d.ts'
   - 'src/app/**/*.spec.ts'
