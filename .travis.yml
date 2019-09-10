@@ -1,14 +1,10 @@
-# env:
-#     global: CC_TEST_REPORTER_ID=0335aa593ff1f9e05d61351ad8dee7b3bdc43701e92a2ae4bc03751e33f0c82c
+env:
+    global: CC_TEST_REPORTER_ID=032731043b33937655767fca3c9ecd15eec4b215ad4e6dd1b19280cd5ac29c6a
 
 language: node_js
 
 node_js:
     - 'stable'
-
-addons:
-    code_climate:
-        repo_token: '0335aa593ff1f9e05d61351ad8dee7b3bdc43701e92a2ae4bc03751e33f0c82c'
 
 branches:
     only:
@@ -16,32 +12,15 @@ branches:
         - develop
         - /^greenkeeper/.*$/
 
-# before_install:
-#     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-#     - chmod +x ./cc-test-reporter
-
-# before_script:
-#     - npm install
-#     - npm install nyc -g
-#     - chmod +x ./cc-test-reporter
-#     - ./cc-test-reporter before-build
-
-# scripts:
-#     # - npm run test
-#     - nyc --reporter=lcov npm run test
-
-# after_script:
-#     - ./cc-test-reporter after-build -t lcov --exit-code $TRAVIS_TEST_RESULT
-
-env:
-  global:
-    - CC_TEST_REPORTER_ID='0335aa593ff1f9e05d61351ad8dee7b3bdc43701e92a2ae4bc03751e33f0c82c'
-
 before_script:
   - npm install nyc -g
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+
+scripts:
+    - npm run test
+    - nyc --reporter=lcov npm run test
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
