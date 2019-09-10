@@ -1,20 +1,20 @@
-env:
-    global: CC_TEST_REPORTER_ID=032731043b33937655767fca3c9ecd15eec4b215ad4e6dd1b19280cd5ac29c6a
+# env:
+#     global: CC_TEST_REPORTER_ID=032731043b33937655767fca3c9ecd15eec4b215ad4e6dd1b19280cd5ac29c6a
 
-language: node_js
+# language: node_js
 
-node_js:
-    - 'stable'
+# node_js:
+#     - 'stable'
 
-cache:
-  directories:
-    - node_modules
+# cache:
+#   directories:
+#     - node_modules
 
-branches:
-    only:
-        - master
-        - develop
-        - /^greenkeeper/.*$/
+# branches:
+#     only:
+#         - master
+#         - develop
+#         - /^greenkeeper/.*$/
 
 before_script:
   # - npm install nyc -g
@@ -22,19 +22,45 @@ before_script:
   # - chmod +x ./cc-test-reporter
   # - ./cc-test-reporter before-build
 
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  # - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  # - chmod +x ./cc-test-reporter
+  # - ./cc-test-reporter before-build
 
 scripts:
     # - npm run test
     # - npm run coverage
-    - npm run test:coverage
+    # - npm run test:coverage
     # - nyc --reporter=lcov npm test
 
 after_script:
   # - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - ./cc-test-reporter after-build -t lcov --prefix "/home/travis/build/hisptz/90-90-90-cascade-graph-library/cascade" --exit-code $TRAVIS_TEST_RESULT
+  # - ./cc-test-reporter after-build -t lcov --prefix "/home/travis/build/hisptz/90-90-90-cascade-graph-library/cascade" --exit-code $TRAVIS_TEST_RESULT
+
+
+# START: Implementation Test
+
+language: node_js
+node_js:
+  - "8"
+addons:
+    code_climate:
+        repo_token:
+            secure: 032731043b33937655767fca3c9ecd15eec4b215ad4e6dd1b19280cd5ac29c6a
+
+script: 
+  - ./node_modules/.bin/nyc --reporter=lcov ./node_modules/mocha/bin/mocha --require @babel/register
+
+before_script:
+  - npm install
+  - npm install mocha
+  - npm install nyc -g
+  - npm install codeclimate-test-reporter nyc -g
+
+after_script:
+  - codeclimate-test-reporter < ./coverage/lcov.info
+
+
+  # END: Implementation Test
 
 
 notifications:
