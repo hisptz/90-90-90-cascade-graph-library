@@ -20,6 +20,7 @@ before_script:
 
 scripts:
     - npm run test
+    - npm run coverage
     - nyc --reporter=lcov npm test
 
 after_script:
