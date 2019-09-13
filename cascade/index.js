@@ -220,7 +220,9 @@ const calculatePercentForInitialValues = (
     } else if (pos >= 1 && pos <= 2) {
         return '90%';
     } else if (pos === 4) {
-        return getIndicatorPercentage(initialTarget, chartObject).toFixed(2) + '%';
+        return (
+            getIndicatorPercentage(initialTarget, chartObject).toFixed(2) + '%'
+        );
     }
 };
 
@@ -252,6 +254,24 @@ const getChartTitleConfiguration = (
 };
 
 /**
+ * 
+ * @param {Array} axisLabels 
+ * @param {Object} chartObject 
+ */
+const sanitizeChartCategories = (axisLabels, chartObject) => {
+    if (axisLabels) {
+        return _.map(axisLabels, (axisLabel, index) => {
+            return index === 3 || index === 4
+                ? axisLabel +
+                ' <b>(' +
+                chartObject.xAxis.categories[0].name +
+                ')</b>'
+                : axisLabel;
+        });
+    }
+};
+
+/**
  *
  * @param {object} chartObject
  * @param {object} favoriteExtensions
@@ -270,7 +290,7 @@ const getCustomXAxisLabels = (chartObject, favoriteExtensions) => {
                 });
             }
         });
-        return _.uniq(xAxisLabels);
+        return sanitizeChartCategories(_.uniq(xAxisLabels), chartObject);
     }
 };
 
@@ -298,7 +318,7 @@ const getXAxisChartConfigurations = (
         : getDefaultXAxisLabels(chartObject);
 };
 
-const getYAxisChartConfigurations = (chartExtension) => {
+const getYAxisChartConfigurations = chartExtension => {
     return {
         title: {
             text: '',
@@ -311,8 +331,8 @@ const getYAxisChartConfigurations = (chartExtension) => {
             verticalAlign: 'top',
         },
         max: chartExtension.multiAxisLabels[0].yAxis.max,
-        min: chartExtension.multiAxisLabels[0].yAxis.min
-    }
+        min: chartExtension.multiAxisLabels[0].yAxis.min,
+    };
 };
 
 const getPlotOptionsConfigurations = () => {
