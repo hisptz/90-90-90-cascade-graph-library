@@ -301,8 +301,8 @@ const startingChartObject = {
             "Custom Title 1",
             "Custom Title 2",
             "Custom Title 3",
-            "Custom Title 4",
-            "Custom Title 5"
+            "Custom Title 4 <b>(2019)</b>",
+            "Custom Title 5 <b>(2019)</b>"
         ]
     },
     "yAxis": {
