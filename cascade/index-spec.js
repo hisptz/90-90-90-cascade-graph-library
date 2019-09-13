@@ -318,7 +318,6 @@ const startingChartObject = {
         },
         "max": null,
         "min": null
-
     },
     "legend": {
         "reversed": true,
@@ -366,7 +365,7 @@ const startingChartObject = {
             "dataLabels": [
                 {
                     "align": "center",
-                    "format": "{point.percent}%",
+                    "format": "{point.percent}",
                     "verticalAlign": "top",
                     "style": {
                         "color": "black"
@@ -376,27 +375,25 @@ const startingChartObject = {
             "data": [
                 {
                     "y": 1600000,
-                    "percent": 100,
                     "color": "#66ccff"
                 },
                 {
                     "y": 1440000,
-                    "percent": 90,
+                    "percent": "90%",
                     "color": "#ffffff"
                 },
                 {
                     "y": 1296000,
-                    "percent": 90,
+                    "percent": "90%",
                     "color": "#ffffff"
                 },
                 {
                     "y": 113988,
-                    "percent": 100,
                     "color": "#66ccff"
                 },
                 {
                     "y": 485,
-                    "percent": 0.43,
+                    "percent": "0.43%",
                     "color": "#66ccff"
                 }
             ]
