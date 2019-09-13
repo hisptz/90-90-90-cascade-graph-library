@@ -200,19 +200,40 @@ const calculatePercentForInitialValues = (
     initialTarget,
     chartObject
 ) => {
-    if (pos === 0) {
-        return parseFloat((data / data * 100).toFixed(2));
+    // if (pos === 0) {
+    //     return parseFloat((data / data * 100).toFixed(2));
+    // } else if (pos >= 1 && pos <= 2) {
+    //     // return parseFloat(
+    //     //     ((data / sanitizedSeriesData[pos - 1]) * 100).toFixed(2)
+    //     // );
+    //     return parseFloat('90');
+    // } else if (pos === 3) {
+    //     return parseFloat(
+    //         (sanitizedSeriesData[pos] / sanitizedSeriesData[pos] * 100).toFixed(2)
+    //     );
+    // } else if (pos === 4) {
+    //     return getIndicatorPercentage(initialTarget, chartObject);
+    // }
+
+    if (pos === 0 || pos === 0) {
+        return '';
     } else if (pos >= 1 && pos <= 2) {
+        if (pos === 1) {
+            return parseFloat(
+                ((data / sanitizedSeriesData[pos - 1]) * 100).toFixed(2)
+            );
+        } else if(pos === 2) {
+            return parseFloat(
+                ((data / sanitizedSeriesData[pos - 1]) * 100).toFixed(2)
+            );
+        }
         // return parseFloat(
         //     ((data / sanitizedSeriesData[pos - 1]) * 100).toFixed(2)
         // );
-        return parseFloat('90');
-    } else if (pos === 3) {
-        return parseFloat(
-            (sanitizedSeriesData[pos] / sanitizedSeriesData[pos] * 100).toFixed(2)
-        );
+        // return parseFloat('90');
     } else if (pos === 4) {
-        return getIndicatorPercentage(initialTarget, chartObject);
+        // return getIndicatorPercentage(initialTarget, chartObject);
+        return getIndicatorPercentage(initialTarget, chartObject).toFixed(2) + '%';
     }
 };
 
@@ -222,7 +243,7 @@ const calculatePercentForInitialValues = (
  * @param {object} chartObject
  */
 const getChartTypeConfiguration = (ctype, chartObject) => {
-    return ctype === undefined
+    return ctype !== undefined
         ? { ...chartObject.chart, type: ctype }
         : { ...chartObject.chart, type: 'column' };
 };
@@ -501,7 +522,7 @@ const getInitialSeriesData = (initialTarget, chartObject) => {
         dataLabels: [
             {
                 align: 'center',
-                format: '{point.percent}%',
+                format: '{point.percent}',
                 verticalAlign: 'top',
                 style: {
                     color: 'black',

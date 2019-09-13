@@ -17,23 +17,19 @@ branches:
         - /^greenkeeper/.*$/
 
 before_script:
-  # - npm install nyc -g
-  # - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  # - chmod +x ./cc-test-reporter
-  # - ./cc-test-reporter before-build
-
+  - npm install nyc -g
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
 scripts:
-    # - npm run test
-    # - npm run coverage
+    - npm run test:dev
+    - npm run coverage
     - npm run test:coverage
-    # - nyc --reporter=lcov npm test
+    - nyc --reporter=lcov npm test
 
 after_script:
-  # - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - ./cc-test-reporter after-build -t lcov --prefix "/home/travis/build/hisptz/90-90-90-cascade-graph-library/cascade" --exit-code $TRAVIS_TEST_RESULT
 
 
