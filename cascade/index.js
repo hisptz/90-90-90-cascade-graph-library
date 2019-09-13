@@ -215,24 +215,11 @@ const calculatePercentForInitialValues = (
     //     return getIndicatorPercentage(initialTarget, chartObject);
     // }
 
-    if (pos === 0 || pos === 0) {
+    if (pos === 0 && pos === 3) {
         return '';
     } else if (pos >= 1 && pos <= 2) {
-        if (pos === 1) {
-            return parseFloat(
-                ((data / sanitizedSeriesData[pos - 1]) * 100).toFixed(2)
-            );
-        } else if(pos === 2) {
-            return parseFloat(
-                ((data / sanitizedSeriesData[pos - 1]) * 100).toFixed(2)
-            );
-        }
-        // return parseFloat(
-        //     ((data / sanitizedSeriesData[pos - 1]) * 100).toFixed(2)
-        // );
-        // return parseFloat('90');
+        return '90%';
     } else if (pos === 4) {
-        // return getIndicatorPercentage(initialTarget, chartObject);
         return getIndicatorPercentage(initialTarget, chartObject).toFixed(2) + '%';
     }
 };
@@ -460,7 +447,7 @@ const getTargetedSeriesData = (initialTarget, chartObject) => {
  * @param {number} initialTarget
  * @param {object} chartObject
  */
-const getTargetSeriesData = (initialTarget, chartObject) => {
+const getArchievedSeriesData = (initialTarget, chartObject) => {
     return {
         name: 'Achieved',
         stack: 2,
@@ -510,7 +497,7 @@ const getInitializedSeriesData = (initialTarget, chartObject) => {
  * @param {number} initialTarget
  * @param {object} chartObject
  */
-const getInitialSeriesData = (initialTarget, chartObject) => {
+const getBaseSeriesData = (initialTarget, chartObject) => {
     return {
         name: 'Targets',
         stack: 1,
@@ -540,8 +527,8 @@ const getInitialSeriesData = (initialTarget, chartObject) => {
  */
 const getSeriesConfigurations = (initialTarget, chartObject) => {
     return [
-        getInitialSeriesData(initialTarget, chartObject),
-        getTargetSeriesData(initialTarget, chartObject),
+        getBaseSeriesData(initialTarget, chartObject),
+        getArchievedSeriesData(initialTarget, chartObject),
     ];
 };
 
