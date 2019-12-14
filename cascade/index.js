@@ -1,5 +1,5 @@
 // import * as _ from 'lodash';
-var _ = require('lodash');
+const _ = require('lodash');
 /**
  *
  * @param {boolean} useCustomChartTitle
@@ -129,15 +129,18 @@ const calculatePercentForTargetedValues = (
 ) => {
     if (pos === 1) {
         return parseFloat(
-            (sanitizedSeriesData[pos] / (initialTarget * (90 / 100)) * 100).toFixed(
-                2
-            )
+            (
+                (sanitizedSeriesData[pos] / (initialTarget * (90 / 100))) *
+                100
+            ).toFixed(2)
         );
     } else if (pos === 2) {
         return parseFloat(
-            (sanitizedSeriesData[pos] /
-                (initialTarget * (90 / 100) * (90 / 100)) *
-                100).toFixed(2)
+            (
+                (sanitizedSeriesData[pos] /
+                    (initialTarget * (90 / 100) * (90 / 100))) *
+                100
+            ).toFixed(2)
         );
     } else if (pos === 3) {
         return 100;
@@ -153,9 +156,11 @@ const getIndicatorPercentage = (initialTarget, chartObject) => {
     const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
     return indicatorArray
         ? parseFloat(
-            (indicatorArray[indicatorArray.length - 1] /
-                indicatorArray[indicatorArray.length - 2] *
-                100).toFixed(2)
+            (
+                (indicatorArray[indicatorArray.length - 1] /
+                    indicatorArray[indicatorArray.length - 2]) *
+                100
+            ).toFixed(2)
         )
         : 0;
 };
@@ -171,7 +176,10 @@ const getIndicatorPercentageDeprecated = (initialTarget, chartObject) => {
     const total = getTotalIndicatorValue(initialTarget, chartObject);
     return indicatorArray && total
         ? parseFloat(
-            (indicatorArray[indicatorArray.length - 2] / total * 100).toFixed(2)
+            (
+                (indicatorArray[indicatorArray.length - 2] / total) *
+                100
+            ).toFixed(2)
         )
         : 0;
 };
@@ -254,11 +262,11 @@ const getChartTitleConfiguration = (
 };
 
 /**
- * 
- * @param {Array} axisLabels 
- * @param {Object} chartObject 
+ *
+ * @param {Array} axisLabels
+ * @param {Object} chartObject
  */
-const sanitizeChartCategories = (axisLabels, chartObject) => {
+const getPeriodAppendedOnChartCategories = (axisLabels, chartObject) => {
     if (axisLabels) {
         return _.map(axisLabels, (axisLabel, index) => {
             return index === 3 || index === 4
@@ -271,28 +279,90 @@ const sanitizeChartCategories = (axisLabels, chartObject) => {
     }
 };
 
+// START: Modified Cascade Series  
 /**
- *
- * @param {object} chartObject
- * @param {object} favoriteExtensions
+ * 
+ * @param {*} chartObject 
+ * @param {*} favoriteExtensions 
  */
-const getCustomXAxisLabels = (chartObject, favoriteExtensions) => {
-    const xAxisLabels = [];
+const getXAxisCustomCategories = (chartObject, favoriteExtensions) => {
     if (chartObject) {
-        chartObject.series.forEach(item => {
-            if (item) {
-                favoriteExtensions.extensions.forEach(ext => {
-                    if (ext.id === item.id) {
-                        xAxisLabels.push(ext.name);
-                    } else {
-                        xAxisLabels.push(ext.name);
-                    }
-                });
-            }
-        });
-        return sanitizeChartCategories(_.uniq(xAxisLabels), chartObject);
+        if (_.has(chartObject, 'series')) {
+            const sanitizedCategories = getCascadeCategories(
+                getUniqueCategories(
+                    _.uniq(
+                        _.map(chartObject.series, series => {
+                            return _.has(favoriteExtensions, 'extensions')
+                                ? _.map(
+                                    favoriteExtensions.extensions,
+                                    extension => {
+                                        return series.id === extension.id
+                                            ? {
+                                                name: extension.name,
+                                                position:
+                                                    extension.position,
+                                            }
+                                            : {
+                                                name: extension.name,
+                                                position:
+                                                    extension.position,
+                                            };
+                                    }
+                                )
+                                : [];
+                        })
+                    ),
+                    'name'
+                )
+            );
+            return getPeriodAppendedOnChartCategories(
+                sanitizedCategories,
+                chartObject
+            );
+        } else {
+            console.log('Chart has no series');
+        }
+    } else {
+        console.log('No Chart Object found');
     }
 };
+
+/**
+ *
+ * @param {*} uniqueCategories
+ */
+const getCascadeCategories = uniqueCategories => {
+    return _.map(uniqueCategories, category => {
+        return category.name;
+    });
+};
+
+/**
+ *
+ * @param {*} categories
+ * @param {*} criteria
+ */
+const getUniqueCategories = (categories, criteria) => {
+    const uniqueCategories = _.uniqBy(_.flattenDeep(categories), criteria);
+    return getSortedCategoriesBasedOnFavoriteExtensionPosition(
+        uniqueCategories,
+        'position'
+    );
+};
+
+/**
+ *
+ * @param {*} uniqueCategories
+ * @param {*} criteria
+ */
+const getSortedCategoriesBasedOnFavoriteExtensionPosition = (
+    uniqueCategories,
+    criteria
+) => {
+    return _.sortBy(uniqueCategories, criteria);
+};
+// END: Modified Cascade Series  
+
 
 /**
  *
@@ -314,7 +384,7 @@ const getXAxisChartConfigurations = (
     favoriteExtensions
 ) => {
     return useCustomXAxisTitle
-        ? getCustomXAxisLabels(chartObject, favoriteExtensions)
+        ? getXAxisCustomCategories(chartObject, favoriteExtensions)
         : getDefaultXAxisLabels(chartObject);
 };
 
