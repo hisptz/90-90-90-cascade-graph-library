@@ -8,7 +8,7 @@
     "start:test": "mocha cascade",
     "start:test-coverage": "nyc mocha cascade/*",
     "start:coverage": "nyc --reporter=lcov ---reporter=text-lcov npm test",
-    "start:deploy": "npm publish --access=public"
+    "start:publish": "npm publish --access=public"
   },
   "repository": {
     "type": "git",
