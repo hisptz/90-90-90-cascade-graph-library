@@ -39,8 +39,8 @@ const getColorOptionForInitialValues = pos => {
  * @param {number} initialTarget
  * @param {object} chartObject
  */
-const getSeriesDataValue = (initialTarget, chartObject) => {
-    return chartObject && initialTarget
+const getIndicatorPerformanceDataValues = (initialTarget, chartObject) => {
+    return chartObject && _.has(chartObject, 'series') && initialTarget
         ? [initialTarget].concat(
             _.map(chartObject.series, item => parseFloat(item.data[0].y))
         )
@@ -53,7 +53,7 @@ const getSeriesDataValue = (initialTarget, chartObject) => {
  * @param {object} chartObject
  */
 const findSummation = (initialTarget, chartObject) => {
-    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const indicatorArray = getIndicatorPerformanceDataValues(initialTarget, chartObject);
     const indicatorData = [
         indicatorArray[indicatorArray.length - 1],
         indicatorArray[indicatorArray.length - 2],
@@ -129,15 +129,18 @@ const calculatePercentForTargetedValues = (
 ) => {
     if (pos === 1) {
         return parseFloat(
-            (sanitizedSeriesData[pos] / (initialTarget * (90 / 100)) * 100).toFixed(
-                2
-            )
+            (
+                (sanitizedSeriesData[pos] / (initialTarget * (90 / 100))) *
+                100
+            ).toFixed(2)
         );
     } else if (pos === 2) {
         return parseFloat(
-            (sanitizedSeriesData[pos] /
-                (initialTarget * (90 / 100) * (90 / 100)) *
-                100).toFixed(2)
+            (
+                (sanitizedSeriesData[pos] /
+                    (initialTarget * (90 / 100) * (90 / 100))) *
+                100
+            ).toFixed(2)
         );
     } else if (pos === 3) {
         return 100;
@@ -150,12 +153,14 @@ const calculatePercentForTargetedValues = (
  * @param {object} chartObject
  */
 const getIndicatorPercentage = (initialTarget, chartObject) => {
-    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const indicatorArray = getIndicatorPerformanceDataValues(initialTarget, chartObject);
     return indicatorArray
         ? parseFloat(
-            (indicatorArray[indicatorArray.length - 1] /
-                indicatorArray[indicatorArray.length - 2] *
-                100).toFixed(2)
+            (
+                (indicatorArray[indicatorArray.length - 1] /
+                    indicatorArray[indicatorArray.length - 2]) *
+                100
+            ).toFixed(2)
         )
         : 0;
 };
@@ -167,11 +172,14 @@ const getIndicatorPercentage = (initialTarget, chartObject) => {
  * @param {object} chartObject
  */
 const getIndicatorPercentageDeprecated = (initialTarget, chartObject) => {
-    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const indicatorArray = getIndicatorPerformanceDataValues(initialTarget, chartObject);
     const total = getTotalIndicatorValue(initialTarget, chartObject);
     return indicatorArray && total
         ? parseFloat(
-            (indicatorArray[indicatorArray.length - 2] / total * 100).toFixed(2)
+            (
+                (indicatorArray[indicatorArray.length - 2] / total) *
+                100
+            ).toFixed(2)
         )
         : 0;
 };
@@ -262,7 +270,10 @@ const getPeriodAppendedOnChartCategories = (axisLabels, chartObject) => {
     if (axisLabels) {
         return _.map(axisLabels, (axisLabel, index) => {
             return index === 3 || index === 4
-                ? axisLabel + ' <b>(' + chartObject.xAxis.categories[0].name + ')</b>'
+                ? axisLabel +
+                ' <b>(' +
+                chartObject.xAxis.categories[0].name +
+                ')</b>'
                 : axisLabel;
         });
     }
@@ -282,17 +293,22 @@ const getXAxisCustomCategories = (chartObject, favoriteExtensions) => {
                     _.uniq(
                         _.map(chartObject.series, series => {
                             return _.has(favoriteExtensions, 'extensions')
-                                ? _.map(favoriteExtensions.extensions, extension => {
-                                    return series.id === extension.id
-                                        ? {
-                                            name: extension.name,
-                                            position: extension.position,
-                                        }
-                                        : {
-                                            name: extension.name,
-                                            position: extension.position,
-                                        };
-                                })
+                                ? _.map(
+                                    favoriteExtensions.extensions,
+                                    extension => {
+                                        return series.id === extension.id
+                                            ? {
+                                                name: extension.name,
+                                                position:
+                                                    extension.position,
+                                            }
+                                            : {
+                                                name: extension.name,
+                                                position:
+                                                    extension.position,
+                                            };
+                                    }
+                                )
                                 : [];
                         })
                     ),
@@ -348,8 +364,8 @@ const getSortedCategoriesBasedOnFavoriteExtensionPosition = (
 // END: Modified Cascade Series
 
 /**
- * 
- * @param {*} chartObject 
+ *
+ * @param {*} chartObject
  */
 const getFavoritteXAxisLabels = chartObject => {
     return chartObject && _.has(chartObject, 'series')
@@ -420,7 +436,7 @@ const getPlotOptionsConfigurations = () => {
  * @param {object} chartObject
  */
 const findAverage = (initialTarget, chartObject) => {
-    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const indicatorArray = getIndicatorPerformanceDataValues(initialTarget, chartObject);
     const indicatorData = [
         parseFloat(indicatorArray[indicatorArray.length - 1]),
         parseFloat(indicatorArray[indicatorArray.length - 2]),
@@ -452,16 +468,7 @@ const getAverageIndicatorValue = (initialTarget, chartObject) => {
  * @param {object} chartObject
  */
 const getSanitizedSeriesTargetValue = (initialTarget, chartObject) => {
-    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
-    const total = getTotalIndicatorValue(initialTarget, chartObject);
-
-    return initialTarget && chartObject
-        ? [
-            ..._.take(indicatorArray, 3),
-            indicatorArray[indicatorArray.length - 2],
-            indicatorArray[indicatorArray.length - 1],
-        ]
-        : [];
+    return getIndicatorPerformanceDataValues(initialTarget, chartObject);
 };
 
 // ToDo: START - Deprecated Implementation
@@ -474,7 +481,7 @@ const getSanitizedSeriesTargetValueDeprecated = (
     initialTarget,
     chartObject
 ) => {
-    const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
+    const indicatorArray = getIndicatorPerformanceDataValues(initialTarget, chartObject);
     const total = getTotalIndicatorValue(initialTarget, chartObject);
     const average = getAverageIndicatorValue(initialTarget, chartObject);
     return initialTarget && chartObject
@@ -556,6 +563,7 @@ const getInitializedSeriesData = (initialTarget, chartObject) => {
         initialTarget,
         chartObject
     );
+    // console.log('GET SANITIZED::: ', sanitizedSeriesData);
     return _.map(sanitizedSeriesData, (data, pos) => {
         return {
             y: getInitialData(pos, initialTarget, sanitizedSeriesData),
