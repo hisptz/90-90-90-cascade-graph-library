@@ -129,18 +129,15 @@ const calculatePercentForTargetedValues = (
 ) => {
     if (pos === 1) {
         return parseFloat(
-            (
-                (sanitizedSeriesData[pos] / (initialTarget * (90 / 100))) *
-                100
-            ).toFixed(2)
+            (sanitizedSeriesData[pos] / (initialTarget * (90 / 100)) * 100).toFixed(
+                2
+            )
         );
     } else if (pos === 2) {
         return parseFloat(
-            (
-                (sanitizedSeriesData[pos] /
-                    (initialTarget * (90 / 100) * (90 / 100))) *
-                100
-            ).toFixed(2)
+            (sanitizedSeriesData[pos] /
+                (initialTarget * (90 / 100) * (90 / 100)) *
+                100).toFixed(2)
         );
     } else if (pos === 3) {
         return 100;
@@ -156,11 +153,9 @@ const getIndicatorPercentage = (initialTarget, chartObject) => {
     const indicatorArray = getSeriesDataValue(initialTarget, chartObject);
     return indicatorArray
         ? parseFloat(
-            (
-                (indicatorArray[indicatorArray.length - 1] /
-                    indicatorArray[indicatorArray.length - 2]) *
-                100
-            ).toFixed(2)
+            (indicatorArray[indicatorArray.length - 1] /
+                indicatorArray[indicatorArray.length - 2] *
+                100).toFixed(2)
         )
         : 0;
 };
@@ -176,10 +171,7 @@ const getIndicatorPercentageDeprecated = (initialTarget, chartObject) => {
     const total = getTotalIndicatorValue(initialTarget, chartObject);
     return indicatorArray && total
         ? parseFloat(
-            (
-                (indicatorArray[indicatorArray.length - 2] / total) *
-                100
-            ).toFixed(2)
+            (indicatorArray[indicatorArray.length - 2] / total * 100).toFixed(2)
         )
         : 0;
 };
@@ -270,20 +262,17 @@ const getPeriodAppendedOnChartCategories = (axisLabels, chartObject) => {
     if (axisLabels) {
         return _.map(axisLabels, (axisLabel, index) => {
             return index === 3 || index === 4
-                ? axisLabel +
-                ' <b>(' +
-                chartObject.xAxis.categories[0].name +
-                ')</b>'
+                ? axisLabel + ' <b>(' + chartObject.xAxis.categories[0].name + ')</b>'
                 : axisLabel;
         });
     }
 };
 
-// START: Modified Cascade Series  
+// START: Modified Cascade Series
 /**
- * 
- * @param {*} chartObject 
- * @param {*} favoriteExtensions 
+ *
+ * @param {*} chartObject
+ * @param {*} favoriteExtensions
  */
 const getXAxisCustomCategories = (chartObject, favoriteExtensions) => {
     if (chartObject) {
@@ -293,22 +282,17 @@ const getXAxisCustomCategories = (chartObject, favoriteExtensions) => {
                     _.uniq(
                         _.map(chartObject.series, series => {
                             return _.has(favoriteExtensions, 'extensions')
-                                ? _.map(
-                                    favoriteExtensions.extensions,
-                                    extension => {
-                                        return series.id === extension.id
-                                            ? {
-                                                name: extension.name,
-                                                position:
-                                                    extension.position,
-                                            }
-                                            : {
-                                                name: extension.name,
-                                                position:
-                                                    extension.position,
-                                            };
-                                    }
-                                )
+                                ? _.map(favoriteExtensions.extensions, extension => {
+                                    return series.id === extension.id
+                                        ? {
+                                            name: extension.name,
+                                            position: extension.position,
+                                        }
+                                        : {
+                                            name: extension.name,
+                                            position: extension.position,
+                                        };
+                                })
                                 : [];
                         })
                     ),
@@ -361,15 +345,16 @@ const getSortedCategoriesBasedOnFavoriteExtensionPosition = (
 ) => {
     return _.sortBy(uniqueCategories, criteria);
 };
-// END: Modified Cascade Series  
-
+// END: Modified Cascade Series
 
 /**
- *
- * @param {object} chartObject
+ * 
+ * @param {*} chartObject 
  */
-const getDefaultXAxisLabels = chartObject => {
-    return chartObject ? _.map(chartObject.series, item => item.name) : [];
+const getFavoritteXAxisLabels = chartObject => {
+    return chartObject && _.has(chartObject, 'series')
+        ? _.map(chartObject.series, series => series.name)
+        : [];
 };
 
 /**
@@ -385,7 +370,7 @@ const getXAxisChartConfigurations = (
 ) => {
     return useCustomXAxisTitle
         ? getXAxisCustomCategories(chartObject, favoriteExtensions)
-        : getDefaultXAxisLabels(chartObject);
+        : getFavoritteXAxisLabels(chartObject);
 };
 
 const getYAxisChartConfigurations = chartExtension => {
@@ -400,8 +385,12 @@ const getYAxisChartConfigurations = chartExtension => {
             enabled: true,
             verticalAlign: 'top',
         },
-        max: chartExtension.multiAxisLabels[0].yAxis.max,
-        min: chartExtension.multiAxisLabels[0].yAxis.min,
+        max: _.has(chartExtension, 'multiAxisLabels')
+            ? chartExtension.multiAxisLabels[0].yAxis.max
+            : '',
+        min: _.has(chartExtension, 'multiAxisLabels')
+            ? chartExtension.multiAxisLabels[0].yAxis.min
+            : '',
     };
 };
 
