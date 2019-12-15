@@ -16,10 +16,10 @@ const _ = require('lodash');
  * No arguements
  */
 const getLegendConfigurations = () => {
-    return {
-        reversed: true,
-        enabled: false,
-    };
+	return {
+		reversed: true,
+		enabled: false,
+	};
 };
 
 /**
@@ -27,25 +27,25 @@ const getLegendConfigurations = () => {
  * @param {number} pos
  */
 const getColorOptionForTargetedValue = (pos, chartExtension, config) => {
-    if (config === 'global') {
-        if (pos > 0) {
-            return '#ffffff';
-        } else {
-            return _.has(chartExtension, 'specialChartType') &&
-                chartExtension.specialChartType.color !== ''
-                ? chartExtension.specialChartType.color
-                : '#66ccff';
-        }
-    } else {
-        if (pos >= 1 && pos <= 2) {
-            return '#ffffff';
-        } else {
-            return _.has(chartExtension, 'specialChartType') &&
-                chartExtension.specialChartType.color !== ''
-                ? chartExtension.specialChartType.color
-                : '#66ccff';
-        }
-    }
+	if (config === 'global') {
+		if (pos > 0) {
+			return '#ffffff';
+		} else {
+			return _.has(chartExtension, 'specialChartType') &&
+				chartExtension.specialChartType.color !== ''
+				? chartExtension.specialChartType.color
+				: '#66ccff';
+		}
+	} else {
+		if (pos >= 1 && pos <= 2) {
+			return '#ffffff';
+		} else {
+			return _.has(chartExtension, 'specialChartType') &&
+				chartExtension.specialChartType.color !== ''
+				? chartExtension.specialChartType.color
+				: '#66ccff';
+		}
+	}
 };
 
 /**
@@ -54,11 +54,11 @@ const getColorOptionForTargetedValue = (pos, chartExtension, config) => {
  * @param {object} chartObject
  */
 const getIndicatorPerformanceDataValues = (initialTarget, chartObject) => {
-    return chartObject && _.has(chartObject, 'series') && initialTarget
-        ? [initialTarget].concat(
-            _.map(chartObject.series, item => parseFloat(item.data[0].y))
-        )
-        : [];
+	return chartObject && _.has(chartObject, 'series') && initialTarget
+		? [initialTarget].concat(
+				_.map(chartObject.series, item => parseFloat(item.data[0].y))
+		  )
+		: [];
 };
 
 /**
@@ -67,15 +67,15 @@ const getIndicatorPerformanceDataValues = (initialTarget, chartObject) => {
  * @param {object} chartObject
  */
 const findSummation = (initialTarget, chartObject) => {
-    const indicatorArray = getIndicatorPerformanceDataValues(
-        initialTarget,
-        chartObject
-    );
-    const indicatorData = [
-        indicatorArray[indicatorArray.length - 1],
-        indicatorArray[indicatorArray.length - 2],
-    ];
-    return indicatorData ? indicatorData.reduce((a, b) => a + b, 0) : 0;
+	const indicatorArray = getIndicatorPerformanceDataValues(
+		initialTarget,
+		chartObject
+	);
+	const indicatorData = [
+		indicatorArray[indicatorArray.length - 1],
+		indicatorArray[indicatorArray.length - 2],
+	];
+	return indicatorData ? indicatorData.reduce((a, b) => a + b, 0) : 0;
 };
 
 /**
@@ -85,40 +85,40 @@ const findSummation = (initialTarget, chartObject) => {
  * @param {array} sanitizedSeriesData
  */
 const getTargetsValueBasedOnPercentages = (
-    pos,
-    initialTarget,
-    sanitizedSeriesData,
-    config
+	pos,
+	initialTarget,
+	sanitizedSeriesData,
+	config
 ) => {
-    if (config === 'global') {
-        if (pos === 0) {
-            return initialTarget;
-        } else if (pos === 1) {
-            return parseFloat(calculate90Percent(initialTarget).toFixed(2));
-        } else if (pos === 2) {
-            return parseFloat(
-                calculate90Percent(calculate90Percent(initialTarget)).toFixed(2)
-            );
-        } else if (pos === 3) {
-            return parseFloat(
-                calculate90Percent(
-                    calculate90Percent(calculate90Percent(initialTarget))
-                ).toFixed(2)
-            );
-        }
-    } else {
-        if (pos === 0) {
-            return initialTarget;
-        } else if (pos === 1) {
-            return parseFloat(calculate90Percent(initialTarget).toFixed(2));
-        } else if (pos === 2) {
-            return parseFloat(
-                calculate90Percent(calculate90Percent(initialTarget)).toFixed(2)
-            );
-        } else if (pos >= 3 && pos <= 4) {
-            return parseFloat(sanitizedSeriesData[pos].toFixed(2));
-        }
-    }
+	if (config === 'global') {
+		if (pos === 0) {
+			return initialTarget;
+		} else if (pos === 1) {
+			return parseFloat(calculate90Percent(initialTarget).toFixed(2));
+		} else if (pos === 2) {
+			return parseFloat(
+				calculate90Percent(calculate90Percent(initialTarget)).toFixed(2)
+			);
+		} else if (pos === 3) {
+			return parseFloat(
+				calculate90Percent(
+					calculate90Percent(calculate90Percent(initialTarget))
+				).toFixed(2)
+			);
+		}
+	} else {
+		if (pos === 0) {
+			return initialTarget;
+		} else if (pos === 1) {
+			return parseFloat(calculate90Percent(initialTarget).toFixed(2));
+		} else if (pos === 2) {
+			return parseFloat(
+				calculate90Percent(calculate90Percent(initialTarget)).toFixed(2)
+			);
+		} else if (pos >= 3 && pos <= 4) {
+			return parseFloat(sanitizedSeriesData[pos].toFixed(2));
+		}
+	}
 };
 
 /**
@@ -127,9 +127,9 @@ const getTargetsValueBasedOnPercentages = (
  * @param {object} chartObject
  */
 const getTotalIndicatorValue = (initialTarget, chartObject) => {
-    return initialTarget && chartObject
-        ? findSummation(initialTarget, chartObject)
-        : 0;
+	return initialTarget && chartObject
+		? findSummation(initialTarget, chartObject)
+		: 0;
 };
 
 /**
@@ -137,9 +137,9 @@ const getTotalIndicatorValue = (initialTarget, chartObject) => {
  */
 
 const getTooltipCOnfiguration = () => {
-    return {
-        enabled: true,
-    };
+	return {
+		enabled: true,
+	};
 };
 
 /**
@@ -149,25 +149,25 @@ const getTooltipCOnfiguration = () => {
  * @param {array} sanitizedSeriesData
  */
 const getAchievedIndicatorsAgainstTargets = (
-    pos,
-    sanitizedSeriesData,
-    config
+	pos,
+	sanitizedSeriesData,
+	config
 ) => {
-    if (config === 'global') {
-        if (pos > 0) {
-            return sanitizedSeriesData ? sanitizedSeriesData[pos] : 0;
-        }
-    } else {
-        if (pos >= 1 && pos <= 2) {
-            return sanitizedSeriesData ? sanitizedSeriesData[pos] : 0;
-        }
-    }
+	if (config === 'global') {
+		if (pos > 0) {
+			return sanitizedSeriesData ? sanitizedSeriesData[pos] : 0;
+		}
+	} else {
+		if (pos >= 1 && pos <= 2) {
+			return sanitizedSeriesData ? sanitizedSeriesData[pos] : 0;
+		}
+	}
 };
 
 const calculate90Percent = value => {
-    if (value) {
-        return value * (90 / 100);
-    }
+	if (value) {
+		return value * (90 / 100);
+	}
 };
 
 /**
@@ -179,62 +179,62 @@ const calculate90Percent = value => {
  * @param {object} chartObject
  */
 const calculatePercentForArchievedValue = (
-    pos,
-    sanitizedSeriesData,
-    initialTarget,
-    config
+	pos,
+	sanitizedSeriesData,
+	initialTarget,
+	config
 ) => {
-    if (config === 'global') {
-        if (pos === 1) {
-            return parseFloat(
-                (
-                    (sanitizedSeriesData[pos] /
-                        calculate90Percent(initialTarget)) *
-                    100
-                ).toFixed(2)
-            );
-        } else if (pos === 2) {
-            return parseFloat(
-                (
-                    (sanitizedSeriesData[pos] /
-                        calculate90Percent(calculate90Percent(initialTarget))) *
-                    100
-                ).toFixed(2)
-            );
-        } else if (pos === 3) {
-            return parseFloat(
-                (
-                    (sanitizedSeriesData[pos] /
-                        calculate90Percent(
-                            calculate90Percent(
-                                calculate90Percent(initialTarget)
-                            )
-                        )) *
-                    100
-                ).toFixed(2)
-            );
-        }
-    } else {
-        if (pos === 1) {
-            return parseFloat(
-                (
-                    (sanitizedSeriesData[pos] /
-                        calculate90Percent(initialTarget)) *
-                    100
-                ).toFixed(2)
-            );
-        } else if (pos === 2) {
-            return parseFloat(
-                (
-                    (sanitizedSeriesData[pos] /
-                        calculate90Percent(calculate90Percent(initialTarget))) *
-                    100
-                ).toFixed(2)
-            );
-        } else if (pos === 3) {
-            return 100;
-        }
-    }
+	if (config === 'global') {
+		if (pos === 1) {
+			return parseFloat(
+				(
+					(sanitizedSeriesData[pos] /
+						calculate90Percent(initialTarget)) *
+					100
+				).toFixed(2)
+			);
+		} else if (pos === 2) {
+			return parseFloat(
+				(
+					(sanitizedSeriesData[pos] /
+						calculate90Percent(calculate90Percent(initialTarget))) *
+					100
+				).toFixed(2)
+			);
+		} else if (pos === 3) {
+			return parseFloat(
+				(
+					(sanitizedSeriesData[pos] /
+						calculate90Percent(
+							calculate90Percent(
+								calculate90Percent(initialTarget)
+							)
+						)) *
+					100
+				).toFixed(2)
+			);
+		}
+	} else {
+		if (pos === 1) {
+			return parseFloat(
+				(
+					(sanitizedSeriesData[pos] /
+						calculate90Percent(initialTarget)) *
+					100
+				).toFixed(2)
+			);
+		} else if (pos === 2) {
+			return parseFloat(
+				(
+					(sanitizedSeriesData[pos] /
+						calculate90Percent(calculate90Percent(initialTarget))) *
+					100
+				).toFixed(2)
+			);
+		} else if (pos === 3) {
+			return 100;
+		}
+	}
 };
 
 /**
@@ -243,19 +243,19 @@ const calculatePercentForArchievedValue = (
  * @param {object} chartObject
  */
 const getLastColumnIndicatorPercentage = (initialTarget, chartObject) => {
-    const indicatorArray = getIndicatorPerformanceDataValues(
-        initialTarget,
-        chartObject
-    );
-    return indicatorArray
-        ? parseFloat(
-            (
-                (indicatorArray[indicatorArray.length - 1] /
-                    indicatorArray[indicatorArray.length - 2]) *
-                100
-            ).toFixed(2)
-        )
-        : 0;
+	const indicatorArray = getIndicatorPerformanceDataValues(
+		initialTarget,
+		chartObject
+	);
+	return indicatorArray
+		? parseFloat(
+				(
+					(indicatorArray[indicatorArray.length - 1] /
+						indicatorArray[indicatorArray.length - 2]) *
+					100
+				).toFixed(2)
+		  )
+		: 0;
 };
 
 // // ToDo: START - Deprecated Implementation
@@ -286,10 +286,10 @@ const getLastColumnIndicatorPercentage = (initialTarget, chartObject) => {
  * @param {number} pos
  */
 const getColorOptionForTargetValues = chartExtension => {
-    return _.has(chartExtension, 'specialChartType') &&
-        chartExtension.specialChartType.color !== ''
-        ? chartExtension.specialChartType.color
-        : '#66ccff';
+	return _.has(chartExtension, 'specialChartType') &&
+		chartExtension.specialChartType.color !== ''
+		? chartExtension.specialChartType.color
+		: '#66ccff';
 };
 
 /**
@@ -301,29 +301,29 @@ const getColorOptionForTargetValues = chartExtension => {
  * @param {object} chartObject
  */
 const calculatePercentForTargetedValue = (
-    pos,
-    initialTarget,
-    chartObject,
-    config
+	pos,
+	initialTarget,
+	chartObject,
+	config
 ) => {
-    if (config === 'global') {
-        if (pos > 0) {
-            return `90%`;
-        }
-    } else {
-        if (pos === 0 && pos === 3) {
-            return ``;
-        } else if (pos >= 1 && pos <= 2) {
-            return `90%`;
-        } else if (pos === 4) {
-            return (
-                getLastColumnIndicatorPercentage(
-                    initialTarget,
-                    chartObject
-                ).toFixed(2) + `%`
-            );
-        }
-    }
+	if (config === 'global') {
+		if (pos > 0) {
+			return `90%`;
+		}
+	} else {
+		if (pos === 0 && pos === 3) {
+			return ``;
+		} else if (pos >= 1 && pos <= 2) {
+			return `90%`;
+		} else if (pos === 4) {
+			return (
+				getLastColumnIndicatorPercentage(
+					initialTarget,
+					chartObject
+				).toFixed(2) + `%`
+			);
+		}
+	}
 };
 
 /**
@@ -332,9 +332,9 @@ const calculatePercentForTargetedValue = (
  * @param {object} chartObject
  */
 const getChartTypeConfiguration = (ctype, chartObject) => {
-    return ctype !== undefined
-        ? { ...chartObject.chart, type: ctype }
-        : { ...chartObject.chart, type: 'column' };
+	return ctype !== undefined
+		? { ...chartObject.chart, type: ctype }
+		: { ...chartObject.chart, type: 'column' };
 };
 
 /**
@@ -344,13 +344,13 @@ const getChartTypeConfiguration = (ctype, chartObject) => {
  * @param {object} favoriteExtension
  */
 const getChartTitleConfiguration = (
-    useCustomChartTitle,
-    chartObject,
-    favoriteExtension
+	useCustomChartTitle,
+	chartObject,
+	favoriteExtension
 ) => {
-    return useCustomChartTitle
-        ? { ...chartObject.title, text: favoriteExtension.name }
-        : { ...chartObject.title, text: chartObject.title.text };
+	return useCustomChartTitle
+		? { ...chartObject.title, text: favoriteExtension.name }
+		: { ...chartObject.title, text: chartObject.title.text };
 };
 
 /**
@@ -359,16 +359,16 @@ const getChartTitleConfiguration = (
  * @param {Object} chartObject
  */
 const getPeriodAppendedOnChartCategories = (axisLabels, chartObject) => {
-    if (axisLabels) {
-        return _.map(axisLabels, (axisLabel, index) => {
-            return index === 3 || index === 4
-                ? axisLabel +
-                ' <b>(' +
-                chartObject.xAxis.categories[0].name +
-                ')</b>'
-                : axisLabel;
-        });
-    }
+	if (axisLabels) {
+		return _.map(axisLabels, (axisLabel, index) => {
+			return index === 3 || index === 4
+				? axisLabel +
+						' <b>(' +
+						chartObject.xAxis.categories[0].name +
+						')</b>'
+				: axisLabel;
+		});
+	}
 };
 
 // START: Modified Cascade Series
@@ -378,47 +378,47 @@ const getPeriodAppendedOnChartCategories = (axisLabels, chartObject) => {
  * @param {*} favoriteExtensions
  */
 const getXAxisCustomCategories = (chartObject, favoriteExtensions, config) => {
-    if (chartObject) {
-        if (_.has(chartObject, 'series')) {
-            const sanitizedCategories = getCascadeCategories(
-                getUniqueCategories(
-                    _.uniq(
-                        _.map(chartObject.series, series => {
-                            return _.has(favoriteExtensions, 'extensions')
-                                ? _.map(
-                                    favoriteExtensions.extensions,
-                                    extension => {
-                                        return series.id === extension.id
-                                            ? {
-                                                name: extension.name,
-                                                position:
-                                                    extension.position,
-                                            }
-                                            : {
-                                                name: extension.name,
-                                                position:
-                                                    extension.position,
-                                            };
-                                    }
-                                )
-                                : [];
-                        })
-                    ),
-                    'name'
-                )
-            );
-            return config !== 'global'
-                ? getPeriodAppendedOnChartCategories(
-                    sanitizedCategories,
-                    chartObject
-                )
-                : sanitizedCategories;
-        } else {
-            console.log('Chart has no series');
-        }
-    } else {
-        console.log('No Chart Object found');
-    }
+	if (chartObject) {
+		if (_.has(chartObject, 'series')) {
+			const sanitizedCategories = getCascadeCategories(
+				getUniqueCategories(
+					_.uniq(
+						_.map(chartObject.series, series => {
+							return _.has(favoriteExtensions, 'extensions')
+								? _.map(
+										favoriteExtensions.extensions,
+										extension => {
+											return series.id === extension.id
+												? {
+														name: extension.name,
+														position:
+															extension.position,
+												  }
+												: {
+														name: extension.name,
+														position:
+															extension.position,
+												  };
+										}
+								  )
+								: [];
+						})
+					),
+					'name'
+				)
+			);
+			return config !== 'global'
+				? getPeriodAppendedOnChartCategories(
+						sanitizedCategories,
+						chartObject
+				  )
+				: sanitizedCategories;
+		} else {
+			console.log('Chart has no series');
+		}
+	} else {
+		console.log('No Chart Object found');
+	}
 };
 
 /**
@@ -426,9 +426,9 @@ const getXAxisCustomCategories = (chartObject, favoriteExtensions, config) => {
  * @param {*} uniqueCategories
  */
 const getCascadeCategories = uniqueCategories => {
-    return _.map(uniqueCategories, category => {
-        return category.name;
-    });
+	return _.map(uniqueCategories, category => {
+		return category.name;
+	});
 };
 
 /**
@@ -437,11 +437,11 @@ const getCascadeCategories = uniqueCategories => {
  * @param {*} criteria
  */
 const getUniqueCategories = (categories, criteria) => {
-    const uniqueCategories = _.uniqBy(_.flattenDeep(categories), criteria);
-    return getSortedCategoriesBasedOnFavoriteExtensionPosition(
-        uniqueCategories,
-        'position'
-    );
+	const uniqueCategories = _.uniqBy(_.flattenDeep(categories), criteria);
+	return getSortedCategoriesBasedOnFavoriteExtensionPosition(
+		uniqueCategories,
+		'position'
+	);
 };
 
 /**
@@ -450,10 +450,10 @@ const getUniqueCategories = (categories, criteria) => {
  * @param {*} criteria
  */
 const getSortedCategoriesBasedOnFavoriteExtensionPosition = (
-    uniqueCategories,
-    criteria
+	uniqueCategories,
+	criteria
 ) => {
-    return _.sortBy(uniqueCategories, criteria);
+	return _.sortBy(uniqueCategories, criteria);
 };
 // END: Modified Cascade Series
 
@@ -462,9 +462,9 @@ const getSortedCategoriesBasedOnFavoriteExtensionPosition = (
  * @param {*} chartObject
  */
 const getFavoritteXAxisLabels = chartObject => {
-    return chartObject && _.has(chartObject, 'series')
-        ? _.map(chartObject.series, series => series.name)
-        : [];
+	return chartObject && _.has(chartObject, 'series')
+		? _.map(chartObject.series, series => series.name)
+		: [];
 };
 
 /**
@@ -474,54 +474,54 @@ const getFavoritteXAxisLabels = chartObject => {
  * @param {object} favoriteExtensions
  */
 const getXAxisChartConfigurations = (
-    useCustomXAxisTitle,
-    chartObject,
-    favoriteExtensions,
-    config
+	useCustomXAxisTitle,
+	chartObject,
+	favoriteExtensions,
+	config
 ) => {
-    return useCustomXAxisTitle
-        ? getXAxisCustomCategories(chartObject, favoriteExtensions, config)
-        : getFavoritteXAxisLabels(chartObject);
+	return useCustomXAxisTitle
+		? getXAxisCustomCategories(chartObject, favoriteExtensions, config)
+		: getFavoritteXAxisLabels(chartObject);
 };
 
 const getYAxisChartConfigurations = chartExtension => {
-    return {
-        title: {
-            text: '',
-        },
-        stackLabels: {
-            style: {
-                color: 'black',
-            },
-            enabled: true,
-            verticalAlign: 'top',
-        },
-        max: _.has(chartExtension, 'multiAxisLabels')
-            ? chartExtension.multiAxisLabels[0].yAxis.max
-            : '',
-        min: _.has(chartExtension, 'multiAxisLabels')
-            ? chartExtension.multiAxisLabels[0].yAxis.min
-            : '',
-    };
+	return {
+		title: {
+			text: '',
+		},
+		stackLabels: {
+			style: {
+				color: 'black',
+			},
+			enabled: true,
+			verticalAlign: 'top',
+		},
+		max: _.has(chartExtension, 'multiAxisLabels')
+			? chartExtension.multiAxisLabels[0].yAxis.max
+			: '',
+		min: _.has(chartExtension, 'multiAxisLabels')
+			? chartExtension.multiAxisLabels[0].yAxis.min
+			: '',
+	};
 };
 
 const getPlotOptionsConfigurations = () => {
-    return {
-        series: {
-            dataLabels: {
-                enabled: true,
-                inside: true,
-            },
-            stacking: 'normal',
-            grouping: false,
-            shadow: false,
-            borderWidth: 0,
-            enableMouseTracking: false,
-            allowPointSelect: true,
-            verticalAlign: 'top',
-            align: 'center',
-        },
-    };
+	return {
+		series: {
+			dataLabels: {
+				enabled: true,
+				inside: true,
+			},
+			stacking: 'normal',
+			grouping: false,
+			shadow: false,
+			borderWidth: 0,
+			enableMouseTracking: false,
+			allowPointSelect: true,
+			verticalAlign: 'top',
+			align: 'center',
+		},
+	};
 };
 
 /**
@@ -530,7 +530,7 @@ const getPlotOptionsConfigurations = () => {
  * @param {object} chartObject
  */
 const getSanitizedSeriesTargetValue = (initialTarget, chartObject) => {
-    return getIndicatorPerformanceDataValues(initialTarget, chartObject);
+	return getIndicatorPerformanceDataValues(initialTarget, chartObject);
 };
 
 /**
@@ -539,58 +539,58 @@ const getSanitizedSeriesTargetValue = (initialTarget, chartObject) => {
  * @param {object} chartObject
  */
 const getArchievedSeriesData = (
-    initialTarget,
-    chartObject,
-    chartExtension,
-    config
+	initialTarget,
+	chartObject,
+	chartExtension,
+	config
 ) => {
-    const sanitizedSeriesData = getSanitizedSeriesTargetValue(
-        initialTarget,
-        chartObject
-    );
-    return _.map(sanitizedSeriesData, (data, pos) => {
-        if (config === 'global') {
-            return {
-                y: getAchievedIndicatorsAgainstTargets(
-                    pos,
-                    sanitizedSeriesData,
-                    config
-                ),
-                percent: calculatePercentForArchievedValue(
-                    pos,
-                    sanitizedSeriesData,
-                    initialTarget,
-                    config
-                ),
-                color: getColorOptionForTargetValues(chartExtension),
-            };
-        } else {
-            if (pos >= 1 && pos <= 2) {
-                return {
-                    y: getAchievedIndicatorsAgainstTargets(
-                        pos,
-                        sanitizedSeriesData
-                    ),
-                    percent: calculatePercentForArchievedValue(
-                        pos,
-                        sanitizedSeriesData,
-                        initialTarget,
-                        config
-                    ),
-                    color: getColorOptionForTargetValues(chartExtension),
-                };
-            } else {
-                return {
-                    percent: calculatePercentForArchievedValue(
-                        pos,
-                        sanitizedSeriesData,
-                        initialTarget
-                    ),
-                    color: getColorOptionForTargetValues(chartExtension),
-                };
-            }
-        }
-    });
+	const sanitizedSeriesData = getSanitizedSeriesTargetValue(
+		initialTarget,
+		chartObject
+	);
+	return _.map(sanitizedSeriesData, (data, pos) => {
+		if (config === 'global') {
+			return {
+				y: getAchievedIndicatorsAgainstTargets(
+					pos,
+					sanitizedSeriesData,
+					config
+				),
+				percent: calculatePercentForArchievedValue(
+					pos,
+					sanitizedSeriesData,
+					initialTarget,
+					config
+				),
+				color: getColorOptionForTargetValues(chartExtension),
+			};
+		} else {
+			if (pos >= 1 && pos <= 2) {
+				return {
+					y: getAchievedIndicatorsAgainstTargets(
+						pos,
+						sanitizedSeriesData
+					),
+					percent: calculatePercentForArchievedValue(
+						pos,
+						sanitizedSeriesData,
+						initialTarget,
+						config
+					),
+					color: getColorOptionForTargetValues(chartExtension),
+				};
+			} else {
+				return {
+					percent: calculatePercentForArchievedValue(
+						pos,
+						sanitizedSeriesData,
+						initialTarget
+					),
+					color: getColorOptionForTargetValues(chartExtension),
+				};
+			}
+		}
+	});
 };
 
 /**
@@ -599,33 +599,33 @@ const getArchievedSeriesData = (
  * @param {object} chartObject
  */
 const getArchievedSeriesValue = (
-    initialTarget,
-    chartObject,
-    chartExtension,
-    config
+	initialTarget,
+	chartObject,
+	chartExtension,
+	config
 ) => {
-    return {
-        name: 'Achieved',
-        stack: 2,
-        zIndex: 2,
-        pointPadding: 0,
-        dataLabels: [
-            {
-                align: 'center',
-                format: '{point.percent}%',
-                verticalAlign: 'top',
-                style: {
-                    color: 'black',
-                },
-            },
-        ],
-        data: getArchievedSeriesData(
-            initialTarget,
-            chartObject,
-            chartExtension,
-            config
-        ),
-    };
+	return {
+		name: 'Achieved',
+		stack: 2,
+		zIndex: 2,
+		pointPadding: 0,
+		dataLabels: [
+			{
+				align: 'center',
+				format: '{point.percent}%',
+				verticalAlign: 'top',
+				style: {
+					color: 'black',
+				},
+			},
+		],
+		data: getArchievedSeriesData(
+			initialTarget,
+			chartObject,
+			chartExtension,
+			config
+		),
+	};
 };
 
 /**
@@ -634,32 +634,34 @@ const getArchievedSeriesValue = (
  * @param {object} chartObject
  */
 const getInitializedSeriesData = (
-    initialTarget,
-    chartObject,
-    chartExtension,
-    config
+	initialTarget,
+	chartObject,
+	chartExtension,
+	config
 ) => {
-    const sanitizedSeriesData = getSanitizedSeriesTargetValue(
-        initialTarget,
-        chartObject
-    );
-    return _.map(sanitizedSeriesData, (data, pos) => {
-        return {
-            y: getTargetsValueBasedOnPercentages(
-                pos,
-                initialTarget,
-                sanitizedSeriesData,
-                config
-            ),
-            percent: calculatePercentForTargetedValue(
-                pos,
-                initialTarget,
-                chartObject,
-                config
-            ),
-            color: getColorOptionForTargetedValue(pos, chartExtension, config),
-        };
-    });
+	const sanitizedSeriesData = getSanitizedSeriesTargetValue(
+		initialTarget,
+		chartObject
+	);
+	return _.map(sanitizedSeriesData, (data, pos) => {
+		return {
+			y: Math.floor(
+				getTargetsValueBasedOnPercentages(
+					pos,
+					initialTarget,
+					sanitizedSeriesData,
+					config
+				)
+			),
+			percent: calculatePercentForTargetedValue(
+				pos,
+				initialTarget,
+				chartObject,
+				config
+			),
+			color: getColorOptionForTargetedValue(pos, chartExtension, config),
+		};
+	});
 };
 
 /**
@@ -668,40 +670,40 @@ const getInitializedSeriesData = (
  * @param {object} chartObject
  */
 const getTargetedSeriedValue = (
-    initialTarget,
-    chartObject,
-    chartExtension,
-    config
+	initialTarget,
+	chartObject,
+	chartExtension,
+	config
 ) => {
-    return {
-        name: 'Targets',
-        stack: 1,
-        zIndex: 1,
-        pointPadding: 0,
-        dashStyle: 'dash',
-        borderColor:
-            _.has(chartExtension, 'specialChartType') &&
-                chartExtension.specialChartType.color !== ''
-                ? chartExtension.specialChartType.color
-                : '#66ccff',
-        borderWidth: 2,
-        dataLabels: [
-            {
-                align: 'center',
-                format: '{point.percent}',
-                verticalAlign: 'top',
-                style: {
-                    color: 'black',
-                },
-            },
-        ],
-        data: getInitializedSeriesData(
-            initialTarget,
-            chartObject,
-            chartExtension,
-            config
-        ),
-    };
+	return {
+		name: 'Targets',
+		stack: 1,
+		zIndex: 1,
+		pointPadding: 0,
+		dashStyle: 'dash',
+		borderColor:
+			_.has(chartExtension, 'specialChartType') &&
+			chartExtension.specialChartType.color !== ''
+				? chartExtension.specialChartType.color
+				: '#66ccff',
+		borderWidth: 2,
+		dataLabels: [
+			{
+				align: 'center',
+				format: '{point.percent}',
+				verticalAlign: 'top',
+				style: {
+					color: 'black',
+				},
+			},
+		],
+		data: getInitializedSeriesData(
+			initialTarget,
+			chartObject,
+			chartExtension,
+			config
+		),
+	};
 };
 
 /**
@@ -710,65 +712,65 @@ const getTargetedSeriedValue = (
  * @param {*} chartObject
  */
 const getSeriesConfigurations = (
-    initialTarget,
-    chartObject,
-    chartExtension,
-    config
+	initialTarget,
+	chartObject,
+	chartExtension,
+	config
 ) => {
-    return [
-        getTargetedSeriedValue(
-            initialTarget,
-            chartObject,
-            chartExtension,
-            config
-        ),
-        getArchievedSeriesValue(
-            initialTarget,
-            chartObject,
-            chartExtension,
-            config
-        ),
-    ];
+	return [
+		getTargetedSeriedValue(
+			initialTarget,
+			chartObject,
+			chartExtension,
+			config
+		),
+		getArchievedSeriesValue(
+			initialTarget,
+			chartObject,
+			chartExtension,
+			config
+		),
+	];
 };
 
 exports.GenerateCascadeGraph = (
-    useCustomChartTitle,
-    useCustomXAxisTitle,
-    config,
-    context,
-    ctype,
-    chartObject,
-    chartExtension,
-    initialTarget
+	useCustomChartTitle,
+	useCustomXAxisTitle,
+	config,
+	context,
+	ctype,
+	chartObject,
+	chartExtension,
+	initialTarget
 ) => {
-    return {
-        chart: getChartTypeConfiguration(ctype, chartObject),
-        title: getChartTitleConfiguration(
-            useCustomChartTitle,
-            chartObject,
-            chartExtension
-        ),
-        subtitle: chartObject.subtitle,
-        credits: chartObject.credits,
-        colors: chartObject.colors,
-        xAxis: {
-            categories: getXAxisChartConfigurations(
-                useCustomXAxisTitle,
-                chartObject,
-                chartExtension,
-                config
-            ),
-        },
-        yAxis: getYAxisChartConfigurations(chartExtension),
-        legend: getLegendConfigurations(),
-        plotOptions: getPlotOptionsConfigurations(),
-        tooltip: chartObject.exporting,
-        exporting: chartObject.exporting,
-        series: getSeriesConfigurations(
-            initialTarget,
-            chartObject,
-            chartExtension,
-            config
-        ),
-    };
+	return {
+		chart: getChartTypeConfiguration(ctype, chartObject),
+		title: getChartTitleConfiguration(
+			useCustomChartTitle,
+			chartObject,
+			chartExtension
+		),
+		subtitle: chartObject.subtitle,
+		credits: chartObject.credits,
+		colors: chartObject.colors,
+		xAxis: {
+			categories: getXAxisChartConfigurations(
+				useCustomXAxisTitle,
+				chartObject,
+				chartExtension,
+				config
+			),
+		},
+		yAxis: getYAxisChartConfigurations(chartExtension),
+		legend: getLegendConfigurations(),
+		plotOptions: getPlotOptionsConfigurations(),
+		tooltip: chartObject.exporting,
+		exporting: chartObject.exporting,
+		series: getSeriesConfigurations(
+			initialTarget,
+			chartObject,
+			chartExtension,
+			config
+		),
+	};
 };
