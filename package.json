@@ -31,7 +31,7 @@
   "homepage": "https://github.com/hisptz/90-90-90-cascade-graph-library#readme",
   "devDependencies": {
     "@babel/register": "^7.6.0",
-    "mocha": "^6.2.0",
+    "mocha": "^8.0.1",
     "nyc": "^14.1.1"
   },
   "dependencies": {
